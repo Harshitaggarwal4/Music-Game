@@ -1,0 +1,17 @@
+res://Scene/main.tscn
+res://Scene/bird.tscn
+res://Scene/pipe_pair.tscn
+res://Scene/ground.tscn
+res://Scene/fade.tscn
+res://Scene/UI.tscn
+res://Scene/upward_ground.tscn
+res://Scripts/pipe_spawner.gd
+res://Scene/pipe_pair2.tscn
+res://Scene/pipe_pair1.gd
+res://Scene/pipe_pair1.tscn
+res://Scene/pipe_pair2.gd
+res://Scene/pipe_pair3.tscn
+res://Scene/pipe_pair3.gd
+res://Scene/upward_ground.gd
+res://Scene/GameManager.gd
+res://Scripts/ground.gd

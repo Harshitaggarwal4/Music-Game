@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://bead3l5my0uid"]
+
+[ext_resource type="Script" path="res://Scene/pipe_pair3.gd" id="1_lvyeu"]
+[ext_resource type="Texture2D" uid="uid://drx10uoxjpba5" path="res://Assets/pipe-green.png" id="2_qfyit"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjuro"]
+size = Vector2(172, 477)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kerov"]
+size = Vector2(173.5, 444)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hw8y6"]
+size = Vector2(50, 424)
+
+[node name="PipePair3" type="Node2D"]
+script = ExtResource("1_lvyeu")
+
+[node name="TopPipe" type="Area2D" parent="."]
+position = Vector2(0, -300)
+rotation = -3.14159
+
+[node name="TopPipeSrpite" type="Sprite2D" parent="TopPipe"]
+position = Vector2(1.00004, 47)
+scale = Vector2(3.72102, 1)
+texture = ExtResource("2_qfyit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopPipe"]
+position = Vector2(4.00013, 51)
+shape = SubResource("RectangleShape2D_fjuro")
+
+[node name="BottomPipe" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPipe"]
+position = Vector2(-2, 423)
+shape = SubResource("RectangleShape2D_kerov")
+
+[node name="BottomPipeSprite" type="Sprite2D" parent="BottomPipe"]
+position = Vector2(2, 437)
+scale = Vector2(3.80769, 1)
+texture = ExtResource("2_qfyit")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(45, 0)
+
+[node name="check_if_swara_pressed" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="check_if_swara_pressed"]
+position = Vector2(144, 51)
+shape = SubResource("RectangleShape2D_hw8y6")
+
+[connection signal="body_entered" from="TopPipe" to="." method="_on_top_pipe_body_entered"]
+[connection signal="body_entered" from="BottomPipe" to="." method="_on_bottom_pipe_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="check_if_swara_pressed" to="." method="_on_check_if_swara_pressed_body_entered"]
