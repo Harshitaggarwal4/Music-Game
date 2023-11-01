@@ -18,7 +18,7 @@ func on_game_win():
 	game_over_box.visible = true
 
 func _on_restart_button_pressed():
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/main_menu.tscn")
 
 
 func _on_button_pressed():

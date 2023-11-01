@@ -10,4 +10,3 @@ res://addons/EasyMenus/Nodes/menu_template_manager.tscn
 res://addons/EasyMenus/Scenes/options_menu.tscn
 res://addons/EasyMenus/Scenes/pause_menu.tscn
 res://Scene/ground.tscn
-res://Scripts/pipe_spawner.gd
