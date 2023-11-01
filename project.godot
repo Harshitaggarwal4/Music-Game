@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="Flappy Bird"
-run/main_scene="res://Scene/main.tscn"
+run/main_scene="res://addons/EasyMenus/Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+MenuTemplateManager="*res://addons/EasyMenus/Nodes/menu_template_manager.tscn"
+MainMenu="*res://addons/EasyMenus/Scenes/main_menu.tscn"
+PauseMenu="*res://addons/EasyMenus/Scenes/pause_menu.tscn"
 
 [display]
 

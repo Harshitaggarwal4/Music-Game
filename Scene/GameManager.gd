@@ -21,6 +21,7 @@ func _ready():
 	pipe_spawner.bird_crashed.connect(end_game)
 	pipe_spawner.point_scored.connect(point_scored)
 	pipe_spawner.check_if_point_increasedd.connect(check_if_point_increased)
+	pipe_spawner.game_won.connect(game_won_screen)
 
 func on_game_started():
 	game_state = GameState.RUNNING
@@ -43,3 +44,11 @@ func check_if_point_increased():
 		return
 	else:
 		end_game()
+		
+func game_won_screen():
+	print("hi")
+	if fade != null: 
+		fade.play()
+	bird.kill()
+	pipe_spawner.stop();
+	ui.on_game_win()

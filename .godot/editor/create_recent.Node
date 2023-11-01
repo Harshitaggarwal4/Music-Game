@@ -1,10 +1,12 @@
+Button
+VBoxContainer
+TextEdit
+Container
 CollisionShape2D
 Area2D
 Node
 Sprite2D
 MarginContainer
-Button
-VBoxContainer
 Panel
 TextureRect
 Label
