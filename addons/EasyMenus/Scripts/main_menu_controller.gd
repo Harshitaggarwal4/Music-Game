@@ -29,9 +29,23 @@ var swaras_list : Array = []
 
 func _on_start_game_button_pressed():
 	var current_text = $VBoxContainer/NameTextBox.text
+
+	var num_words_reqd = 3
+
 	# Split the text into words
 	var words = current_text.split(" ")
+	if current_text=="":
+		words=[]
 	swaras_list.clear()  # Clear the previous swaras
+	
+	# ensure number of words is exact
+	if words.size() < num_words_reqd:
+		var names = load_names(num_words_reqd - words.size())
+		for name in names:
+			words.append(name)
+	elif words.size() > num_words_reqd:
+		words = words.slice(0, num_words_reqd)
+
 	# Loop through each word
 	for word in words:
 		var swara = name_to_swaras(word)
@@ -44,8 +58,8 @@ func _on_start_game_button_pressed():
 	text_list = words
 	MainMenu.text_list = words
 	MainMenu.swaras_list =swaras_list
-#	print(text_list)
-#	print(swaras_list)
+	print(text_list)
+	print(swaras_list)
 	get_tree().change_scene_to_file("res://Scene/main.tscn")
 #	emit_signal("start_game_pressed")
 
@@ -69,26 +83,6 @@ func _on_start_game_button_pressed():
 #	# Store the split words into the text_list variable
 #	text_list = words
 #	pass
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 func get_syllables(str):
@@ -232,3 +226,22 @@ func get_swaras(syllables):
 func name_to_swaras(name):
 	return get_swaras(get_syllables(name))
 
+func load_names(num_names):
+	# load names list from the file
+	var file = FileAccess.open("res://Assets/names.txt", FileAccess.READ)
+	var names = file.get_as_text()
+	file.close()
+
+	# split into lines
+	names = names.split("\n")
+
+	var names_list = []
+
+	# get random names
+	for i in range(num_names):
+		var name = names[randi_range(0, names.size() - 1)]
+		names_list.append(name)
+#	# display names in the text box
+#	var textbox = $VBoxContainer/NameTextBox
+#	textbox.set_text(" ".join(names_list))
+	return names_list
