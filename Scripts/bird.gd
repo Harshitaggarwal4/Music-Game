@@ -20,6 +20,7 @@ var alive = true
 func _ready():
 	velocity = Vector2.ZERO
 	animation_player.play("idle")
+#	bird.bird_crashed.connect("stop_falling")
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") && should_process_input:
