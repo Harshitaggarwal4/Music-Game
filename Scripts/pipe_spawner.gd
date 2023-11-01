@@ -108,7 +108,7 @@ func on_bird_entered_correct():
 	point_scored.emit()
 	if swaras[number_of_swaras_pressed] == ',':
 		play_swara(swaras[number_of_swaras_pressed - 1])
-	else:		
+	else:
 		play_swara(swaras[number_of_swaras_pressed])
 	number_of_swaras_pressed += 1
 	if (number_of_swaras_pressed == length):
@@ -119,10 +119,13 @@ func stop():
 	spawn_timer.stop()
 	for pipe in get_children().filter(func (child): return child is PipePair1):
 		(pipe as PipePair1).speed = 0
+		(pipe as PipePair1).speed_y = 0
 	for pipe in get_children().filter(func (child): return child is PipePair2):
 		(pipe as PipePair2).speed = 0
+		(pipe as PipePair2).speed_y = 0
 	for pipe in get_children().filter(func (child): return child is PipePair3):
 		(pipe as PipePair3).speed = 0
+		(pipe as PipePair3).speed_y = 0
 
 func check_if_point_increased():
 	check_if_point_increasedd.emit()
