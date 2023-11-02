@@ -20,22 +20,22 @@ position = Vector2(0, -300)
 rotation = -3.14159
 
 [node name="TopPipeSrpite" type="Sprite2D" parent="TopPipe"]
-position = Vector2(1.00004, 47)
+position = Vector2(-0.99998, -99)
 scale = Vector2(3.72102, 1)
 texture = ExtResource("2_qfyit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopPipe"]
-position = Vector2(4.00013, 51)
+position = Vector2(3.99975, -99)
 shape = SubResource("RectangleShape2D_fjuro")
 
 [node name="BottomPipe" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPipe"]
-position = Vector2(-2, 423)
+position = Vector2(0, 533)
 shape = SubResource("RectangleShape2D_kerov")
 
 [node name="BottomPipeSprite" type="Sprite2D" parent="BottomPipe"]
-position = Vector2(2, 437)
+position = Vector2(4, 545)
 scale = Vector2(3.80769, 1)
 texture = ExtResource("2_qfyit")
 

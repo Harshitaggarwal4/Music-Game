@@ -17,8 +17,8 @@ var number_of_swaras_done = 0
 var number_of_swaras_pressed = 0
 var length = swaras.size()
 
-@export var pipe_speed = -150
-@export var pipe_speed_y = 20
+@export var pipe_speed = -250
+@export var pipe_speed_y = 5
 @onready var spawn_timer = $SpawnTimer
 
 func _ready():
@@ -54,12 +54,12 @@ func spawn_pipe():
 			
 			var label_top = Label.new()
 			label_top.text = swara[choosen_number_1]
-			label_top.set_position(Vector2(0,-170))
+			label_top.set_position(Vector2(0,-100))
 			pipe.add_child(label_top)
 			
 			var label_bottom = Label.new()
 			label_bottom.text = swara[choosen_number_2]
-			label_bottom.set_position(Vector2(0,240))
+			label_bottom.set_position(Vector2(0,300))
 			pipe.add_child(label_bottom)
 		if choosen_pipe == 3:
 			pipe = pipe2
@@ -67,25 +67,25 @@ func spawn_pipe():
 			var label_top = Label.new()
 			label_top.text = swaras[number_of_swaras_done] + "fuck"
 			number_of_swaras_done += 1
-			label_top.set_position(Vector2(0,-170))
+			label_top.set_position(Vector2(0,-100))
 			pipe.add_child(label_top)
 			
 			var label_bottom = Label.new()
 			label_bottom.text = swara[choosen_number_1]
-			label_bottom.set_position(Vector2(0,240))
+			label_bottom.set_position(Vector2(0,300))
 			pipe.add_child(label_bottom)
 		if choosen_pipe == 4:
 			pipe = pipe3
 			
 			var label_top = Label.new()
 			label_top.text = swara[choosen_number_1]
-			label_top.set_position(Vector2(0,-170))
+			label_top.set_position(Vector2(0,-100))
 			pipe.add_child(label_top)
 			
 			var label_bottom = Label.new()
 			label_bottom.text = swaras[number_of_swaras_done] + "fuck"
 			number_of_swaras_done += 1		
-			label_bottom.set_position(Vector2(0,240))
+			label_bottom.set_position(Vector2(0,300))
 			pipe.add_child(label_bottom)
 
 		add_child(pipe)

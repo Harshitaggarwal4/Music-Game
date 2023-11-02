@@ -12,3 +12,4 @@ res://addons/EasyMenus/Scenes/pause_menu.tscn
 res://addons/EasyMenus/Scenes/main_menu.tscn
 res://Scene/ground.tscn
 res://addons/EasyMenus/Scenes/NamePage.tscn
+res://Scripts/pipe_spawner.gd
