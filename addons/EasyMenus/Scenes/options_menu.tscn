@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://qlskttl1wjr7"]
+[gd_scene load_steps=10 format=3 uid="uid://qlskttl1wjr7"]
 
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/options_menu_controller.gd" id="1_h6k46"]
-[ext_resource type="Texture2D" uid="uid://2k37kpabdjmt" path="res://Assets/blackbg.webp" id="2_fasxr"]
+[ext_resource type="Texture2D" uid="uid://cfngk5p65xvc7" path="res://Assets/blackboard.jpg" id="2_7c5fr"]
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/follow_focus_center.gd" id="2_l3n3h"]
 [ext_resource type="PackedScene" uid="uid://dyfwp0vhgfjd7" path="res://addons/EasyMenus/Nodes/slider_w_labels.tscn" id="3_xghjq"]
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/option_button_input_propagator.gd" id="4_02jwa"]
+[ext_resource type="Theme" uid="uid://cjli33ttnplxc" path="res://OptionTheme.tres" id="4_nr5wk"]
 [ext_resource type="PackedScene" uid="uid://cqniig2ks0xs2" path="res://addons/EasyMenus/Nodes/gamepad_closable.tscn" id="5_k4nlh"]
+
+[sub_resource type="Theme" id="Theme_g8rej"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x77mt"]
 
@@ -14,28 +17,28 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 157.0
-offset_bottom = 26.0
+offset_right = 21.0
+offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h6k46")
 
-[node name="Blackbg" type="Sprite2D" parent="."]
-position = Vector2(160, 270)
-scale = Vector2(1, 1.11667)
-texture = ExtResource("2_fasxr")
+[node name="Blackboard" type="Sprite2D" parent="."]
+position = Vector2(477.001, 381.625)
+scale = Vector2(0.867186, 0.966882)
+texture = ExtResource("2_7c5fr")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -77.0
-offset_top = -1.0
-offset_right = -78.0
-offset_bottom = -3.0
+offset_left = -469.5
+offset_right = 460.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_g8rej")
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
@@ -49,10 +52,13 @@ transition_time = 0.15
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("4_nr5wk")
 theme_override_constants/separation = 15
 
 [node name="OptionsTitle" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.0
 theme_override_font_sizes/font_size = 45
 text = "Options"
 horizontal_alignment = 1

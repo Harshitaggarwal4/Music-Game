@@ -16,6 +16,8 @@ script = ExtResource("1_ww3ei")
 
 [node name="Background" type="Sprite2D" parent="World"]
 texture_filter = 1
+position = Vector2(-1.49997, -2.5)
+scale = Vector2(5.58681, 1.74023)
 texture = ExtResource("1_awsh2")
 
 [node name="PipeSpawner" type="Node" parent="."]

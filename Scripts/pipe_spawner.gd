@@ -22,6 +22,7 @@ var length = swaras.size()
 @onready var spawn_timer = $SpawnTimer
 
 func _ready():
+	print("WOW")
 	var my_name_list = MainMenu.text_list
 	var my_swara_list = MainMenu.swaras_list
 	swaras = my_swara_list
@@ -111,6 +112,7 @@ func on_bird_entered_correct():
 		play_swara(swaras[number_of_swaras_pressed])
 	number_of_swaras_pressed += 1
 	if (number_of_swaras_pressed == length):
+		print("hihi")
 		game_won.emit()
 
 func stop():

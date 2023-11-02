@@ -18,8 +18,8 @@ grow_vertical = 2
 script = ExtResource("1_lbw7r")
 
 [node name="Blackboard" type="Sprite2D" parent="."]
-position = Vector2(517.499, 386.001)
-scale = Vector2(0.833595, 0.949588)
+position = Vector2(803, 444.5)
+scale = Vector2(1.27969, 1.08675)
 texture = ExtResource("2_n4ac8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -28,14 +28,14 @@ unique_name_in_owner = true
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1031.0
-offset_bottom = 780.0
+offset_right = 1610.0
+offset_bottom = 904.0
 theme = ExtResource("3_qv1ry")
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
 layout_mode = 0
-offset_right = 1027.0
-offset_bottom = 761.0
+offset_right = 1603.0
+offset_bottom = 886.0
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/CenterContainer"]
 custom_minimum_size = Vector2(500, 350)
@@ -61,7 +61,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="StartGameButton" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30

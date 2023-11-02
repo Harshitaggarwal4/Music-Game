@@ -1,12 +1,14 @@
 res://Scene/main.tscn
+res://new_theme.tres
 res://Scene/bird.tscn
 res://Scene/fade.tscn
 res://Scene/UI.tscn
 res://Scene/pipe_pair1.tscn
 res://Scene/pipe_pair2.tscn
 res://Scene/pipe_pair3.tscn
-res://addons/EasyMenus/Scenes/main_menu.tscn
 res://addons/EasyMenus/Nodes/menu_template_manager.tscn
 res://addons/EasyMenus/Scenes/options_menu.tscn
 res://addons/EasyMenus/Scenes/pause_menu.tscn
+res://addons/EasyMenus/Scenes/main_menu.tscn
 res://Scene/ground.tscn
+res://addons/EasyMenus/Scenes/NamePage.tscn
