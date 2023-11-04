@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bead3l5my0uid"]
+[gd_scene load_steps=8 format=3 uid="uid://bead3l5my0uid"]
 
 [ext_resource type="Script" path="res://Scene/pipe_pair3.gd" id="1_lvyeu"]
 [ext_resource type="Texture2D" uid="uid://drx10uoxjpba5" path="res://Assets/pipe-green.png" id="2_qfyit"]
+[ext_resource type="Texture2D" uid="uid://bcuhv67iwwl58" path="res://Assets/blackImage.jpg" id="3_8f2ol"]
+[ext_resource type="Texture2D" uid="uid://bsslh2gobouy2" path="res://Assets/WhiteImage.jpg" id="4_tst2e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjuro"]
 size = Vector2(172, 477)
@@ -19,7 +21,8 @@ script = ExtResource("1_lvyeu")
 position = Vector2(0, -300)
 rotation = -3.14159
 
-[node name="TopPipeSrpite" type="Sprite2D" parent="TopPipe"]
+[node name="TopPipeSrpite2" type="Sprite2D" parent="TopPipe"]
+visible = false
 position = Vector2(-0.99998, -99)
 scale = Vector2(3.72102, 1)
 texture = ExtResource("2_qfyit")
@@ -28,16 +31,29 @@ texture = ExtResource("2_qfyit")
 position = Vector2(3.99975, -99)
 shape = SubResource("RectangleShape2D_fjuro")
 
+[node name="TopPipeSrpite" type="Sprite2D" parent="TopPipe"]
+position = Vector2(-1.00035, -99)
+rotation = 3.14159
+scale = Vector2(0.0839844, 0.614583)
+texture = ExtResource("3_8f2ol")
+
 [node name="BottomPipe" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPipe"]
-position = Vector2(0, 533)
-shape = SubResource("RectangleShape2D_kerov")
-
-[node name="BottomPipeSprite" type="Sprite2D" parent="BottomPipe"]
+[node name="BottomPipeSprite2" type="Sprite2D" parent="BottomPipe"]
+visible = false
 position = Vector2(4, 545)
 scale = Vector2(3.80769, 1)
 texture = ExtResource("2_qfyit")
+
+[node name="BottomPipeSprite" type="Sprite2D" parent="BottomPipe"]
+position = Vector2(-0.499993, 532)
+scale = Vector2(0.319778, 1.25)
+texture = ExtResource("4_tst2e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPipe/BottomPipeSprite"]
+position = Vector2(1.56356, 0.799988)
+scale = Vector2(3.12717, 0.8)
+shape = SubResource("RectangleShape2D_kerov")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(45, 0)

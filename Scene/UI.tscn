@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtsfutbumtxem"]
+[gd_scene load_steps=7 format=3 uid="uid://dtsfutbumtxem"]
 
 [ext_resource type="FontFile" uid="uid://cu4lf4od2owng" path="res://Assets/font/FlappyBird.ttf" id="1_37paw"]
 [ext_resource type="Script" path="res://Scene/UI.gd" id="1_fawne"]
+[ext_resource type="Texture2D" uid="uid://gm8h1jin1vfi" path="res://Assets/upperBg2.png" id="2_6ml1m"]
 [ext_resource type="Texture2D" uid="uid://cfngk5p65xvc7" path="res://Assets/blackboard.jpg" id="2_jlf7u"]
 [ext_resource type="Texture2D" uid="uid://x218sp1de1n0" path="res://Assets/gameover.png" id="3_wrxua"]
 
@@ -12,6 +13,12 @@ bg_color = Color(0.94902, 0.564706, 0, 0.568627)
 script = ExtResource("1_fawne")
 
 [node name="Blackboard" type="Sprite2D" parent="."]
+position = Vector2(514.75, 70.25)
+scale = Vector2(0.886849, 0.305252)
+texture = ExtResource("2_6ml1m")
+
+[node name="Blackboard2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(513, 71.125)
 scale = Vector2(0.814844, 0.175557)
 texture = ExtResource("2_jlf7u")
