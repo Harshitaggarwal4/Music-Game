@@ -20,20 +20,25 @@ rotation = -3.14159
 position = Vector2(2, -95)
 shape = SubResource("RectangleShape2D_fjuro")
 
+[node name="Pipe-green" type="Sprite2D" parent="TopPipe/CollisionShape2D"]
+position = Vector2(1.99977, 5.99998)
+rotation = 3.14159
+scale = Vector2(3.73077, 1)
+texture = ExtResource("2_moi5s")
+
 [node name="BottomPipe" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPipe"]
 position = Vector2(2, 533)
 shape = SubResource("RectangleShape2D_kerov")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(45, 0)
-
-[node name="Pipe-green" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-4, -211)
+[node name="Pipe-green2" type="Sprite2D" parent="BottomPipe/CollisionShape2D"]
+position = Vector2(7.62939e-06, 13)
 scale = Vector2(3.73077, 1)
 texture = ExtResource("2_moi5s")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(45, 0)
 
 [connection signal="body_entered" from="TopPipe" to="." method="_on_body_entered"]
 [connection signal="body_entered" from="BottomPipe" to="." method="_on_body_entered"]

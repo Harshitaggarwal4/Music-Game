@@ -33,6 +33,51 @@ func _ready():
 	
 func start_spawning_pipes():
 	spawn_timer.start()
+	
+	
+	
+func setTexture_Top(pipe,label_top,black,yellow):
+	var collision_shape = pipe.get_node("TopPipe/CollisionShape2D")
+	var rectangle_shape = collision_shape.shape
+	var collision_extents = rectangle_shape.extents
+
+
+	var sprite = pipe.get_node("TopPipe/CollisionShape2D/Pipe-green")
+	if(label_top.text == "s" or label_top.text == "r" or  label_top.text == "m" or  label_top.text == "p"):
+		sprite.texture = black 
+	else:
+		sprite.texture = yellow
+
+	# Calculate the scale factors to resize the sprite to match the collision shape's size
+	var texture_size = sprite.texture.get_size()
+	sprite.scale = Vector2(
+		collision_extents.x * 2.0 / texture_size.x,  # Scale factor for width
+		collision_extents.y * 2.0 / texture_size.y   # Scale factor for height
+	)
+
+
+
+func setTexture_Buttom(pipe,label_top,black,yellow):
+	var collision_shape = pipe.get_node("BottomPipe/CollisionShape2D")
+	var rectangle_shape = collision_shape.shape
+	var collision_extents = rectangle_shape.extents
+	
+	var sprite = pipe.get_node("BottomPipe/CollisionShape2D/Pipe-green2")
+	
+	if(label_top.text == "s" or label_top.text == "r" or  label_top.text == "m" or  label_top.text == "p"):
+		sprite.texture = black 
+	else:
+		sprite.texture = yellow
+		
+	# Calculate the scale factors to resize the sprite to match the collision shape's size
+	var texture_size = sprite.texture.get_size()
+	sprite.scale = Vector2(
+		collision_extents.x * 2.0 / texture_size.x,  # Scale factor for width
+		collision_extents.y * 2.0 / texture_size.y   # Scale factor for height
+	)
+
+
+
 
 func spawn_pipe():
 	if (number_of_swaras_done != length):
@@ -64,47 +109,12 @@ func spawn_pipe():
 			label_top.modulate = Color.BLACK
 			if(label_top.text == "g" or label_top.text == "d" or  label_top.text == "n"):
 				label_top.modulate = Color.BLACK
+			else:
+				label_top.modulate = Color.WHITE
 			pipe.add_child(label_top)
 			
 			
-
-
-			
-
-#			# Adding Texture
-#			# Assuming 'TopPipe' is the parent node of 'CollisionShape2D' and it uses a 'RectangleShape2D' shape
-#			var collision_shape = pipe.get_node("TopPipe/CollisionShape2D")
-##			var collision_shape_bottom = pipe.get_node("BottomPipe/CollisionShape2D")
-#			print(collision_shape.global_position.x)
-##			collision_shape.global_position.x = collision_shape_bottom.global_position.x
-#			print(collision_shape.global_position.x)
-#			var rectangle_shape = collision_shape.shape
-#			var collision_extents = rectangle_shape.extents
-#
-#			# Create a new Sprite node
-#			var sprite = Sprite2D.new() 
-##			print(label_top.text)
-#			if(label_top.text == "s" or label_top.text == "r" or  label_top.text == "m" or  label_top.text == "p"):
-#				sprite.texture = black 
-#			else:
-#				sprite.texture = yellow
-#			sprite.position = collision_shape.global_position  # Align the sprite's position with the collision shape
-#
-#			# Calculate the scale factors to resize the sprite to match the collision shape's size
-#			var texture_size = sprite.texture.get_size()
-#			sprite.scale = Vector2(
-#				collision_extents.x * 2.0 / texture_size.x,  # Scale factor for width
-#				collision_extents.y * 1.0 / texture_size.y   # Scale factor for height
-#			)
-#
-#			# Center the sprite if the collision shape is centered
-#			sprite.centered = true
-#
-#			# Add the sprite as a child to the 'TopPipe' node, not as a child to the 'CollisionShape2D'
-#			pipe.get_node("TopPipe").add_child(sprite)
-#
-
-			
+			setTexture_Top(pipe,label_top,black,yellow)
 			
 			
 			
@@ -114,36 +124,12 @@ func spawn_pipe():
 			label_bottom.set_position(Vector2(0,350))
 			if(label_bottom.text == "g" or label_bottom.text == "d" or  label_bottom.text == "n"):
 				label_bottom.modulate = Color.BLACK
+			else:
+				label_bottom.modulate = Color.WHITE
 			pipe.add_child(label_bottom)
 			
+			setTexture_Buttom(pipe,label_bottom,black,yellow)
 			
-			# Adding Texture
-			# Assuming 'TopPipe' is the parent node of 'CollisionShape2D' and it uses a 'RectangleShape2D' shape
-			var collision_shape_bottom = pipe.get_node("BottomPipe/CollisionShape2D")
-			var rectangle_shape_bottom = collision_shape_bottom.shape
-			var collision_extents_bottom = rectangle_shape_bottom.extents
-
-			# Create a new Sprite node
-			var sprite_bottom = Sprite2D.new()
-			if(label_bottom.text == "s" or label_bottom.text == "r" or  label_bottom.text == "m" or  label_bottom.text == "p"):
-				sprite_bottom.texture = black  # Set the loaded texture to the sprite
-			else:
-				sprite_bottom.texture = yellow
-			sprite_bottom.position = collision_shape_bottom.global_position  # Align the sprite's position with the collision shape
-
-			# Calculate the scale factors to resize the sprite to match the collision shape's size
-			var texture_size_bottom = sprite_bottom.texture.get_size()
-			sprite_bottom.scale = Vector2(
-				collision_extents_bottom.x * 2.0 / texture_size_bottom.x,  # Scale factor for width
-				collision_extents_bottom.y * 2.0 / texture_size_bottom.y   # Scale factor for height
-			)
-
-			# Center the sprite if the collision shape is centered
-			sprite_bottom.centered = true
-
-			# Add the sprite as a child to the 'TopPipe' node, not as a child to the 'CollisionShape2D'
-			pipe.get_node("BottomPipe").add_child(sprite_bottom)
-
 			
 #---------------------------------------------------------------
 		if choosen_pipe == 3:
@@ -155,37 +141,11 @@ func spawn_pipe():
 			label_top.set_position(Vector2(0,-100))
 			if(label_top.text == "g" or label_top.text == "d" or  label_top.text == "n"):
 				label_top.modulate = Color.BLACK
+			else:
+				label_top.modulate = Color.WHITE
 			pipe.add_child(label_top)
 			
-			# Adding Texture
-			# Assuming 'TopPipe' is the parent node of 'CollisionShape2D' and it uses a 'RectangleShape2D' shape
-			var collision_shape = pipe.get_node("TopPipe/CollisionShape2D")
-			var rectangle_shape = collision_shape.shape
-			var collision_extents = rectangle_shape.extents
-
-			# Create a new Sprite node
-			var sprite = Sprite2D.new()
-#			print(label_top.text)
-			if(label_top.text == "s" or label_top.text == "r" or  label_top.text == "m" or  label_top.text == "p"):
-				sprite.texture = black  # Set the loaded texture to the sprite
-			else:
-				sprite.texture = yellow
-			sprite.position = collision_shape.global_position  # Align the sprite's position with the collision shape
-
-			# Calculate the scale factors to resize the sprite to match the collision shape's size
-			var texture_size = sprite.texture.get_size()
-			sprite.scale = Vector2(
-				collision_extents.x * 2.0 / texture_size.x,  # Scale factor for width
-				collision_extents.y * 1.0 / texture_size.y   # Scale factor for height
-			)
-
-			# Center the sprite if the collision shape is centered
-			sprite.centered = true
-
-			# Add the sprite as a child to the 'TopPipe' node, not as a child to the 'CollisionShape2D'
-			pipe.get_node("TopPipe").add_child(sprite)
-#
-#
+			setTexture_Top(pipe,label_top,black,yellow)
 			
 			
 			
@@ -195,35 +155,12 @@ func spawn_pipe():
 			label_bottom.set_position(Vector2(0,350))
 			if(label_bottom.text == "g" or label_bottom.text == "d" or  label_bottom.text == "n"):
 				label_bottom.modulate = Color.BLACK
+			else:
+				label_bottom.modulate = Color.WHITE
 			pipe.add_child(label_bottom)
 			
+			setTexture_Buttom(pipe,label_bottom,black,yellow)
 			
-			# Adding Texture
-			# Assuming 'TopPipe' is the parent node of 'CollisionShape2D' and it uses a 'RectangleShape2D' shape
-			var collision_shape_bottom = pipe.get_node("BottomPipe/CollisionShape2D")
-			var rectangle_shape_bottom = collision_shape_bottom.shape
-			var collision_extents_bottom = rectangle_shape_bottom.extents
-
-			# Create a new Sprite node
-			var sprite_bottom = Sprite2D.new()
-			if(label_bottom.text == "s" or label_bottom.text == "r" or  label_bottom.text == "m" or  label_bottom.text == "p"):
-				sprite_bottom.texture = black  # Set the loaded texture to the sprite
-			else:
-				sprite_bottom.texture = yellow
-			sprite_bottom.position = collision_shape_bottom.global_position  # Align the sprite's position with the collision shape
-
-			# Calculate the scale factors to resize the sprite to match the collision shape's size
-			var texture_size_bottom = sprite_bottom.texture.get_size()
-			sprite_bottom.scale = Vector2(
-				collision_extents_bottom.x * 2.0 / texture_size_bottom.x,  # Scale factor for width
-				collision_extents_bottom.y * 2.0 / texture_size_bottom.y   # Scale factor for height
-			)
-
-			# Center the sprite if the collision shape is centered
-			sprite_bottom.centered = true
-
-			# Add the sprite as a child to the 'TopPipe' node, not as a child to the 'CollisionShape2D'
-			pipe.get_node("BottomPipe").add_child(sprite_bottom)
 
 ##---------------------------------------------------------------
 			
@@ -235,36 +172,13 @@ func spawn_pipe():
 			label_top.set_position(Vector2(0,-100))
 			if(label_top.text == "g" or label_top.text == "d" or  label_top.text == "n"):
 				label_top.modulate = Color.BLACK
+			else:
+				label_top.modulate = Color.WHITE
 			pipe.add_child(label_top)
 			
+			setTexture_Top(pipe,label_top,black,yellow)
 			
-			# Adding Texture
-			# Assuming 'TopPipe' is the parent node of 'CollisionShape2D' and it uses a 'RectangleShape2D' shape
-			var collision_shape = pipe.get_node("TopPipe/CollisionShape2D")
-			var rectangle_shape = collision_shape.shape
-			var collision_extents = rectangle_shape.extents
-
-			# Create a new Sprite node
-			var sprite = Sprite2D.new()
-#			print(label_top.text)
-			if(label_top.text == "s" or label_top.text == "r" or  label_top.text == "m" or  label_top.text == "p"):
-				sprite.texture = black  # Set the loaded texture to the sprite
-			else:
-				sprite.texture = yellow
-			sprite.position = collision_shape.global_position  # Align the sprite's position with the collision shape
-
-			# Calculate the scale factors to resize the sprite to match the collision shape's size
-			var texture_size = sprite.texture.get_size()
-			sprite.scale = Vector2(
-				collision_extents.x * 2.0 / texture_size.x,  # Scale factor for width
-				collision_extents.y * 1.0 / texture_size.y   # Scale factor for height
-			)
-
-			# Center the sprite if the collision shape is centered
-			sprite.centered = true
-
-			# Add the sprite as a child to the 'TopPipe' node, not as a child to the 'CollisionShape2D'
-			pipe.get_node("TopPipe").add_child(sprite)
+			
 
 			
 			
@@ -274,34 +188,13 @@ func spawn_pipe():
 			label_bottom.set_position(Vector2(0,350))
 			if(label_bottom.text == "g" or label_bottom.text == "d" or  label_bottom.text == "n"):
 				label_bottom.modulate = Color.BLACK
+			else:
+				label_bottom.modulate = Color.WHITE
 			pipe.add_child(label_bottom)
 			
-			# Adding Texture
-			# Assuming 'TopPipe' is the parent node of 'CollisionShape2D' and it uses a 'RectangleShape2D' shape
-			var collision_shape_bottom = pipe.get_node("BottomPipe/CollisionShape2D")
-			var rectangle_shape_bottom = collision_shape_bottom.shape
-			var collision_extents_bottom = rectangle_shape_bottom.extents
+			setTexture_Buttom(pipe,label_bottom,black,yellow)
 
-			# Create a new Sprite node
-			var sprite_bottom = Sprite2D.new()
-			if(label_bottom.text == "s" or label_bottom.text == "r" or  label_bottom.text == "m" or  label_bottom.text == "p"):
-				sprite_bottom.texture = black  # Set the loaded texture to the sprite
-			else:
-				sprite_bottom.texture = yellow
-			sprite_bottom.position = collision_shape_bottom.global_position  # Align the sprite's position with the collision shape
 
-			# Calculate the scale factors to resize the sprite to match the collision shape's size
-			var texture_size_bottom = sprite_bottom.texture.get_size()
-			sprite_bottom.scale = Vector2(
-				collision_extents_bottom.x * 2.0 / texture_size_bottom.x,  # Scale factor for width
-				collision_extents_bottom.y * 2.0 / texture_size_bottom.y   # Scale factor for height
-			)
-
-			# Center the sprite if the collision shape is centered
-			sprite_bottom.centered = true
-
-			# Add the sprite as a child to the 'TopPipe' node, not as a child to the 'CollisionShape2D'
-			pipe.get_node("BottomPipe").add_child(sprite_bottom)
 
 			
 			

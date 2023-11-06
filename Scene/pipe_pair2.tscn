@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c78lqmqyuyy88"]
+[gd_scene load_steps=6 format=3 uid="uid://c78lqmqyuyy88"]
 
 [ext_resource type="Script" path="res://Scene/pipe_pair2.gd" id="1_kxt8e"]
+[ext_resource type="Texture2D" uid="uid://drx10uoxjpba5" path="res://Assets/pipe-green.png" id="2_n7ame"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjuro"]
 size = Vector2(172, 477)
@@ -23,11 +24,22 @@ rotation = -3.14159
 position = Vector2(1.99976, -95)
 shape = SubResource("RectangleShape2D_fjuro")
 
+[node name="Pipe-green" type="Sprite2D" parent="TopPipe/CollisionShape2D"]
+position = Vector2(2, 6)
+rotation = 3.14159
+scale = Vector2(3.75, 1.00104)
+texture = ExtResource("2_n7ame")
+
 [node name="BottomPipe" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPipe"]
 position = Vector2(-2, 533)
 shape = SubResource("RectangleShape2D_kerov")
+
+[node name="Pipe-green2" type="Sprite2D" parent="BottomPipe/CollisionShape2D"]
+position = Vector2(0, 13)
+scale = Vector2(3.57692, 0.988542)
+texture = ExtResource("2_n7ame")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(45, 0)
