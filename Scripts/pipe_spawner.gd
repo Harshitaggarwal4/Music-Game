@@ -7,6 +7,8 @@ signal point_scored
 signal check_if_point_increasedd
 signal game_won
 
+@onready var bird = get_node("../Bird") as Bird
+
 var pipe_pair_scene1 = preload("res://Scene/pipe_pair1.tscn")
 var pipe_pair_scene2 = preload("res://Scene/pipe_pair2.tscn")
 var pipe_pair_scene3 = preload("res://Scene/pipe_pair3.tscn")
@@ -101,10 +103,12 @@ func spawn_pipe():
 		pipe.set_speed(pipe_speed, pipe_speed_y)
 	
 func on_bird_entered_incorrect():
+	bird.upward_stop()	
 	bird_crashed.emit()
 	stop()
 	
 func on_bird_entered_correct():
+	bird.upward_stop()	
 	point_scored.emit()
 	if swaras[number_of_swaras_pressed] == ',':
 		play_swara(swaras[number_of_swaras_pressed - 1])

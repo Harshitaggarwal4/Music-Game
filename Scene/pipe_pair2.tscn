@@ -16,6 +16,7 @@ size = Vector2(49, 423)
 script = ExtResource("1_kxt8e")
 
 [node name="TopPipe" type="Area2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, -300)
 rotation = -3.14159
 

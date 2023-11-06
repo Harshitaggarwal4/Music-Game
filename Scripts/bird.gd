@@ -73,10 +73,11 @@ func kill():
 func stop():
 #	animation_player.stop()
 #	gravity = 0
+	alive=false
 	velocity = Vector2.ZERO
 	
 func upward_stop():
 #	animation_player.stop()
 #	gravity = 0
+	go_down = velocity.y<0
 	velocity = Vector2.ZERO
-	go_down = true

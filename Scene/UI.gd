@@ -3,6 +3,7 @@ extends CanvasLayer
 class_name UI
 
 @onready var points_label = $MarginContainer/PointsLabel
+@onready var resume_game_button = $MarginContainer/GameOverBox/Panel/MarginContainer/RestartButton
 @onready var game_over_box = $MarginContainer/GameOverBox
 
 func _ready():
@@ -13,6 +14,7 @@ func update_points(points: int):
 
 func on_game_over():
 	game_over_box.visible = true
+	resume_game_button.grab_focus()
 
 func on_game_win():
 	game_over_box.visible = true
