@@ -36,6 +36,8 @@ texture = ExtResource("1_awsh2")
 
 [node name="PipeSpawner" type="Node" parent="."]
 script = ExtResource("3_kjkin")
+pipe_speed = null
+pipe_speed_y = null
 
 [node name="SpawnTimer" type="Timer" parent="PipeSpawner"]
 wait_time = 0.8
