@@ -16,28 +16,24 @@ script = ExtResource("1_hfnya")
 position = Vector2(0, -300)
 rotation = -3.14159
 
-[node name="TopPipeSrpite" type="Sprite2D" parent="TopPipe"]
-position = Vector2(1.00004, 47)
-scale = Vector2(3.72102, 1)
-texture = ExtResource("2_moi5s")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopPipe"]
-position = Vector2(4.00013, 51)
+position = Vector2(2, -95)
 shape = SubResource("RectangleShape2D_fjuro")
 
 [node name="BottomPipe" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPipe"]
-position = Vector2(-2, 423)
+position = Vector2(2, 533)
 shape = SubResource("RectangleShape2D_kerov")
-
-[node name="BottomPipeSprite" type="Sprite2D" parent="BottomPipe"]
-position = Vector2(2, 437)
-scale = Vector2(3.80769, 1)
-texture = ExtResource("2_moi5s")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(45, 0)
+
+[node name="Pipe-green" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-4, -211)
+scale = Vector2(3.73077, 1)
+texture = ExtResource("2_moi5s")
 
 [connection signal="body_entered" from="TopPipe" to="." method="_on_body_entered"]
 [connection signal="body_entered" from="BottomPipe" to="." method="_on_body_entered"]

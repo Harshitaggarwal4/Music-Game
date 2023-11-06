@@ -2,19 +2,19 @@ extends Control
 signal resume
 signal back_to_main_pressed
 
-@onready var content : VBoxContainer = $%Content
+@onready var contentPause : VBoxContainer = $%Content
 @onready var options_menu : Control = $%OptionsMenu
 @onready var resume_game_button: Button = $%ResumeGameButton
 	
 func open_pause_menu():
 	#Stops game and shows pause menu
 	get_tree().paused = true
-	show()
+	contentPause.show()
 	resume_game_button.grab_focus()
-	
+
 func close_pause_menu():
 	get_tree().paused = false
-	hide()
+	contentPause.hide()
 	emit_signal("resume")
 
 func _on_resume_game_button_pressed():
@@ -22,14 +22,14 @@ func _on_resume_game_button_pressed():
 
 
 func _on_options_button_pressed():
-	content.hide()
+	contentPause.hide()
 	options_menu.show()
 	options_menu.on_open()
 
 
 func _on_options_menu_close():
 	options_menu.hide()
-	content.show()
+	contentPause.show()
 	resume_game_button.grab_focus()
 
 func _on_quit_button_pressed():
@@ -38,6 +38,8 @@ func _on_quit_button_pressed():
 
 func _on_back_to_menu_button_pressed():
 	close_pause_menu()
+	get_tree().paused = false
+#	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/NamePage.tscn")
 	emit_signal("back_to_main_pressed")
 
 func _input(event):

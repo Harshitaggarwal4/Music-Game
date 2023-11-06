@@ -1,96 +1,83 @@
-[gd_scene load_steps=5 format=3 uid="uid://dq6tvhqcy2aps"]
+[gd_scene load_steps=6 format=3 uid="uid://dq6tvhqcy2aps"]
 
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/main_menu_controller.gd" id="1_lbw7r"]
-[ext_resource type="Texture2D" uid="uid://ok165owqmjbs" path="res://Assets/MenuBG.png" id="2_f2iqa"]
+[ext_resource type="Texture2D" uid="uid://cfngk5p65xvc7" path="res://Assets/blackboard.jpg" id="2_n4ac8"]
 [ext_resource type="PackedScene" uid="uid://qlskttl1wjr7" path="res://addons/EasyMenus/Scenes/options_menu.tscn" id="2_pwqpr"]
 [ext_resource type="PackedScene" uid="uid://dru131jwwih1y" path="res://addons/EasyMenus/Nodes/menu_template_manager.tscn" id="3_65vis"]
+[ext_resource type="Theme" uid="uid://bg80y2n6mvg1g" path="res://new_theme.tres" id="3_qv1ry"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 6.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lbw7r")
 
-[node name="MenuBg" type="Sprite2D" parent="."]
-position = Vector2(152, 257)
-scale = Vector2(0.427368, 0.495972)
-texture = ExtResource("2_f2iqa")
+[node name="Blackboard" type="Sprite2D" parent="."]
+position = Vector2(517.499, 386.001)
+scale = Vector2(0.833595, 0.949588)
+texture = ExtResource("2_n4ac8")
 
-[node name="Content" type="VBoxContainer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -162.0
-offset_top = 108.0
-offset_right = 188.0
-offset_bottom = 564.0
-grow_horizontal = 2
-theme_override_constants/separation = 15
-metadata/_edit_group_ = true
 
-[node name="StartGameButton" type="Button" parent="Content"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(350, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-focus_neighbor_top = NodePath("../QuitButton")
-focus_neighbor_bottom = NodePath("../OptionsButton")
-focus_next = NodePath("../OptionsButton")
-focus_previous = NodePath("../QuitButton")
-theme_override_font_sizes/font_size = 30
-text = "Start"
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1031.0
+offset_bottom = 780.0
+theme = ExtResource("3_qv1ry")
 
-[node name="Title" type="Label" parent="Content/StartGameButton"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 1027.0
+offset_bottom = 761.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/CenterContainer"]
+custom_minimum_size = Vector2(500, 350)
 layout_mode = 2
-offset_top = -81.0
-offset_right = 350.0
-offset_bottom = -15.0
-theme_override_font_sizes/font_size = 45
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
 text = "Sangitam"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Content"]
-custom_minimum_size = Vector2(0, 100)
+[node name="StartGameButton" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="OptionsButton" type="Button" parent="Content"]
-custom_minimum_size = Vector2(350, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-focus_neighbor_top = NodePath("../StartGameButton")
-focus_neighbor_bottom = NodePath("../QuitButton")
-focus_next = NodePath("../QuitButton")
-focus_previous = NodePath("../StartGameButton")
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
-text = "Options"
+text = "Play"
 
-[node name="QuitButton" type="Button" parent="Content"]
-custom_minimum_size = Vector2(350, 0)
+[node name="OptionsButton" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-focus_neighbor_top = NodePath("../OptionsButton")
-focus_neighbor_bottom = NodePath("../StartGameButton")
-focus_next = NodePath("../StartGameButton")
-focus_previous = NodePath("../OptionsButton")
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
 text = "Quit"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = -3.0
-offset_top = 180.0
-offset_right = 300.0
-offset_bottom = 313.0
-
-[node name="NameTextBox" type="TextEdit" parent="VBoxContainer"]
-custom_minimum_size = Vector2(10, 50)
-layout_mode = 2
-placeholder_text = "Enter Your Name"
 
 [node name="OptionsMenu" parent="." instance=ExtResource("2_pwqpr")]
 unique_name_in_owner = true
@@ -100,7 +87,7 @@ anchors_preset = 0
 
 [node name="MenuTemplateManager" parent="." instance=ExtResource("3_65vis")]
 
-[connection signal="pressed" from="Content/StartGameButton" to="." method="_on_start_game_button_pressed"]
-[connection signal="pressed" from="Content/OptionsButton" to="." method="open_options"]
-[connection signal="pressed" from="Content/QuitButton" to="." method="quit"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsButton" to="." method="open_options"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="quit"]
 [connection signal="close" from="OptionsMenu" to="." method="close_options"]
