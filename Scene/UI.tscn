@@ -94,6 +94,13 @@ theme_override_fonts/font = ExtResource("1_37paw")
 theme_override_font_sizes/font_size = 32
 text = "Restart"
 
+[node name="Button2" type="Button" parent="."]
+offset_left = 922.0
+offset_top = -1.0
+offset_right = 1012.0
+offset_bottom = 30.0
+text = "Next Level"
+
 [node name="Button" type="Button" parent="."]
 offset_left = 12.0
 offset_top = 8.0
@@ -172,6 +179,7 @@ offset_right = 973.0
 offset_bottom = 140.0
 
 [connection signal="pressed" from="MarginContainer/GameOverBox/Panel/MarginContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Content/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
 [connection signal="pressed" from="Content/OptionsButton" to="." method="_on_options_button_pressed"]

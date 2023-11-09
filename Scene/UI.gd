@@ -44,6 +44,12 @@ func _on_button_pressed():
 	pass # Replace with function body.
 
 
+func _on_button_2_pressed():
+	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/NamePage.tscn")
+	pass # Replace with function body.
+
+
+
 func _on_quit_button_pressed():
 	get_tree().paused = false
 	get_tree().quit()
@@ -66,3 +72,5 @@ func _on_resume_game_button_pressed():
 func _on_options_button_pressed():
 	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/options_menu.tscn")
 	pass # Replace with function body.
+
+

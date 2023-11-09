@@ -82,8 +82,7 @@ text = "Quit"
 [node name="OptionsMenu" parent="." instance=ExtResource("2_pwqpr")]
 unique_name_in_owner = true
 visible = false
-layout_mode = 2
-anchors_preset = 0
+layout_mode = 1
 
 [node name="MenuTemplateManager" parent="." instance=ExtResource("3_65vis")]
 
