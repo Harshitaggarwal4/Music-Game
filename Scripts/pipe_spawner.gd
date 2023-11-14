@@ -18,6 +18,7 @@ var swara = ['s', 'r', 'g', 'm', 'p', 'd', 'n']
 var number_of_swaras_done = 0
 var number_of_swaras_pressed = 0
 var length = swaras.size()
+var first = false
 
 @export var pipe_speed = -250 - (MainMenu.Level-1)*25
 @export var pipe_speed_y = 5 + (MainMenu.Level-1)*5
@@ -98,6 +99,9 @@ func spawn_pipe():
 		var black = load("res://Assets/blackImage.jpg")
 		var yellow = load("res://Assets/YellowishWhite.png")
 		var pipe
+		if first == false:
+			first = true
+			choosen_pipe = 1
 		if choosen_pipe == 1 or choosen_pipe == 2:
 			pipe = pipe1
 			
