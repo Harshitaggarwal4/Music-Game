@@ -49,20 +49,6 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
 text = "Resume"
 
-[node name="OptionsButton" type="Button" parent="Content"]
-custom_minimum_size = Vector2(350, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 30
-text = "Options"
-
-[node name="BackToMenuButton" type="Button" parent="Content"]
-custom_minimum_size = Vector2(350, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 30
-text = "Back to Main Menu"
-
 [node name="QuitButton" type="Button" parent="Content"]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
@@ -71,12 +57,9 @@ theme_override_font_sizes/font_size = 30
 text = "Quit"
 
 [node name="OptionsMenu" parent="." instance=ExtResource("2_ejh0f")]
-unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="Content/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
-[connection signal="pressed" from="Content/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="Content/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="pressed" from="Content/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="close" from="OptionsMenu" to="." method="_on_options_menu_close"]

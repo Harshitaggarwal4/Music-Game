@@ -29,6 +29,7 @@ func on_game_over():
 
 func on_game_win():
 	MainMenu.Level += 1
+	$MarginContainer/GameOverBox2/Panel/MarginContainer/Button2.text = "Level : " + str(MainMenu.Level) 
 	game_over_box2.visible = true
 
 
@@ -46,6 +47,10 @@ func _on_button_pressed():
 	get_tree().paused = true
 #	PauseMenu.open_pause_menu()
 	pass # Replace with function body.
+	
+func _input(event):
+	if event.as_text() == "Enter":
+		_on_button_pressed()
 
 
 func _on_button_2_pressed():
