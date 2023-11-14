@@ -5,6 +5,7 @@ class_name UI
 @onready var points_label = $MarginContainer/PointsLabel
 @onready var resume_game_button = $MarginContainer/GameOverBox/Panel/MarginContainer/RestartButton
 @onready var floatingName = $Label
+@onready var floatingSwara = $Label2
 @onready var game_over_box = $MarginContainer/GameOverBox
 
 @onready var PanelPause : Panel = $%Panel
@@ -16,6 +17,7 @@ func _ready():
 	contentPause.hide()
 	points_label.text = "%d" % 0
 	floatingName.text = " ".join(MainMenu.text_list)
+	floatingSwara.text = " ".join(MainMenu.swaras_list)
 
 func update_points(points: int):
 		points_label.text = "%d" % points

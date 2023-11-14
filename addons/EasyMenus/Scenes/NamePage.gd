@@ -13,6 +13,7 @@ func _process(delta):
 
 var text_list: Array = []
 var swaras_list : Array = []
+var Level = 1
 
 func _on_button_pressed():
 	var current_text = $TextEdit.text

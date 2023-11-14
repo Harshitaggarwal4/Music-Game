@@ -173,10 +173,16 @@ theme_override_font_sizes/font_size = 30
 text = "Quit"
 
 [node name="Label" type="Label" parent="."]
-offset_left = 631.0
-offset_top = 96.0
-offset_right = 973.0
-offset_bottom = 140.0
+offset_left = 625.0
+offset_top = 123.0
+offset_right = 967.0
+offset_bottom = 167.0
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 216.0
+offset_top = 126.0
+offset_right = 418.0
+offset_bottom = 165.0
 
 [connection signal="pressed" from="MarginContainer/GameOverBox/Panel/MarginContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
