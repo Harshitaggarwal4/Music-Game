@@ -38,7 +38,7 @@ texture = ExtResource("1_awsh2")
 script = ExtResource("3_kjkin")
 
 [node name="SpawnTimer" type="Timer" parent="PipeSpawner"]
-wait_time = 0.8
+wait_time = 0.75
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

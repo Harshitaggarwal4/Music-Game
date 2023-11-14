@@ -4,6 +4,7 @@ class_name PipePair3
 
 var speed = 0
 var speed_y = 0
+var swara_name = ','
 
 signal bird_entered_correct
 signal bird_entered_incorrect
@@ -29,7 +30,7 @@ func _on_top_pipe_body_entered(body):
 
 
 func _on_bottom_pipe_body_entered(body):
-	bird_entered_correct.emit()
+	bird_entered_correct.emit(swara_name)
 
 
 func _on_check_if_swara_pressed_body_entered(body):

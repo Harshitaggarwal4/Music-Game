@@ -20,11 +20,11 @@ var number_of_swaras_pressed = 0
 var length = swaras.size()
 
 @export var pipe_speed = -250
-@export var pipe_speed_y = 0
+@export var pipe_speed_y = 5
 @onready var spawn_timer = $SpawnTimer
 
 func _ready():
-	print("WOW")
+#	print("WOW")
 	var my_name_list = MainMenu.text_list
 	var my_swara_list = MainMenu.swaras_list
 	swaras = my_swara_list
@@ -104,8 +104,8 @@ func spawn_pipe():
 			var label_top = Label.new()
 			label_top.text = swara[choosen_number_1]
 			label_top.set_position(Vector2(0,-100))
-			print("YO")
-			print(label_top.text)
+#			print("YO")
+#			print(label_top.text)
 			label_top.modulate = Color.BLACK
 			if(label_top.text == "g" or label_top.text == "d" or  label_top.text == "n"):
 				label_top.modulate = Color.BLACK
@@ -134,9 +134,10 @@ func spawn_pipe():
 #---------------------------------------------------------------
 		if choosen_pipe == 3:
 			pipe = pipe2
+			pipe.swara_name = swaras[number_of_swaras_done]
 
 			var label_top = Label.new()
-			label_top.text = swaras[number_of_swaras_done] + "fuck"
+			label_top.text = swaras[number_of_swaras_done] + "this"
 			number_of_swaras_done += 1
 			label_top.set_position(Vector2(0,-100))
 			if(label_top.text == "g" or label_top.text == "d" or  label_top.text == "n"):
@@ -166,6 +167,7 @@ func spawn_pipe():
 			
 		if choosen_pipe == 4:
 			pipe = pipe3
+			pipe.swara_name = swaras[number_of_swaras_done]
 			
 			var label_top = Label.new()
 			label_top.text = swara[choosen_number_1]
@@ -183,7 +185,7 @@ func spawn_pipe():
 			
 			
 			var label_bottom = Label.new()
-			label_bottom.text = swaras[number_of_swaras_done] + "fuck"
+			label_bottom.text = swaras[number_of_swaras_done] + "this"
 			number_of_swaras_done += 1		
 			label_bottom.set_position(Vector2(0,350))
 			if(label_bottom.text == "g" or label_bottom.text == "d" or  label_bottom.text == "n"):
@@ -217,17 +219,20 @@ func on_bird_entered_incorrect():
 	bird_crashed.emit()
 	stop()
 	
-func on_bird_entered_correct():
-	bird.upward_stop()	
-	point_scored.emit()
-	if swaras[number_of_swaras_pressed] == ',':
-		play_swara(swaras[number_of_swaras_pressed - 1])
+func on_bird_entered_correct(swara_name):
+	if swara_name == swaras[number_of_swaras_pressed]:
+		bird.upward_stop()
+		point_scored.emit()
+		if swaras[number_of_swaras_pressed] == ',':
+			play_swara(swaras[number_of_swaras_pressed - 1])
+		else:
+			play_swara(swaras[number_of_swaras_pressed])
+		number_of_swaras_pressed += 1
+		if (number_of_swaras_pressed == length):
+	#		print("hihi")
+			game_won.emit()
 	else:
-		play_swara(swaras[number_of_swaras_pressed])
-	number_of_swaras_pressed += 1
-	if (number_of_swaras_pressed == length):
-		print("hihi")
-		game_won.emit()
+		bird.upward_stop()
 
 func stop():
 	spawn_timer.stop()
