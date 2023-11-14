@@ -81,3 +81,16 @@ func upward_stop():
 #	gravity = 0
 	go_down = velocity.y<0
 	velocity = Vector2.ZERO
+
+func _on_upper_area_body_entered(body):
+	print("hi harshit")
+	go_down = velocity.y<0
+	velocity = Vector2.ZERO
+	print(velocity)
+
+
+func _on_lower_area_body_entered(body):
+	print("hi harshit")
+	go_down = velocity.y<0
+	velocity = Vector2.ZERO
+	print(velocity)

@@ -125,6 +125,14 @@ theme_override_font_sizes/font_size = 60
 text = "Level Cleared"
 horizontal_alignment = 1
 
+[node name="Label" type="Label" parent="MarginContainer/GameOverBox2/Label"]
+layout_mode = 2
+offset_right = 268.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "Level Cleared!"
+horizontal_alignment = 1
+
 [node name="Panel" type="Panel" parent="MarginContainer/GameOverBox2"]
 custom_minimum_size = Vector2(200, 170.03)
 layout_mode = 2
@@ -193,9 +201,14 @@ theme_override_font_sizes/font_size = 100
 text = "Pause Menu"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Content"]
-custom_minimum_size = Vector2(0, 20)
+[node name="VBoxContainer" type="GridContainer" parent="Content"]
+custom_minimum_size = Vector2(30, 60)
 layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Content/VBoxContainer"]
+custom_minimum_size = Vector2(340, 30)
+layout_mode = 2
+size_flags_horizontal = 6
 
 [node name="ResumeGameButton" type="Button" parent="Content"]
 unique_name_in_owner = true
@@ -205,22 +218,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "Resume"
-
-[node name="OptionsButton" type="Button" parent="Content"]
-process_mode = 3
-custom_minimum_size = Vector2(350, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 50
-text = "Options"
-
-[node name="BackToMenuButton" type="Button" parent="Content"]
-process_mode = 3
-custom_minimum_size = Vector2(350, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 50
-text = "Back to Main Menu"
 
 [node name="QuitButton" type="Button" parent="Content"]
 process_mode = 3
@@ -247,6 +244,4 @@ offset_bottom = 157.0
 [connection signal="pressed" from="MarginContainer/GameOverBox2/Panel/MarginContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Content/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
-[connection signal="pressed" from="Content/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="Content/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="pressed" from="Content/QuitButton" to="." method="_on_quit_button_pressed"]
