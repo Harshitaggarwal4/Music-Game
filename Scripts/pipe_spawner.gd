@@ -115,6 +115,7 @@ func spawn_pipe():
 				label_top.modulate = Color.BLACK
 			else:
 				label_top.modulate = Color.WHITE
+			label_top.add_theme_font_override("font",load("res://Assets/font/FlappyBird.ttf"))
 			pipe.add_child(label_top)
 			
 			
@@ -130,6 +131,8 @@ func spawn_pipe():
 				label_bottom.modulate = Color.BLACK
 			else:
 				label_bottom.modulate = Color.WHITE
+			label_bottom.add_theme_font_override("font",load("res://Assets/font/FlappyBird.ttf"))
+			label_bottom.add_theme_font_size_override("font", 100)	
 			pipe.add_child(label_bottom)
 			
 			setTexture_Buttom(pipe,label_bottom,black,yellow)
@@ -148,6 +151,8 @@ func spawn_pipe():
 				label_top.modulate = Color.BLACK
 			else:
 				label_top.modulate = Color.WHITE
+			label_top.add_theme_font_override("font",load("res://Assets/font/FlappyBird.ttf"))
+			label_top.add_theme_font_size_override("font", 100)
 			pipe.add_child(label_top)
 			
 			setTexture_Top(pipe,label_top,black,yellow)
@@ -162,6 +167,8 @@ func spawn_pipe():
 				label_bottom.modulate = Color.BLACK
 			else:
 				label_bottom.modulate = Color.WHITE
+			label_bottom.add_theme_font_override("font",load("res://Assets/font/FlappyBird.ttf"))
+			label_bottom.add_theme_font_size_override("font", 100)
 			pipe.add_child(label_bottom)
 			
 			setTexture_Buttom(pipe,label_bottom,black,yellow)
@@ -180,6 +187,8 @@ func spawn_pipe():
 				label_top.modulate = Color.BLACK
 			else:
 				label_top.modulate = Color.WHITE
+			label_top.add_theme_font_override("font",load("res://Assets/font/FlappyBird.ttf"))
+			label_top.add_theme_font_size_override("font", 100)
 			pipe.add_child(label_top)
 			
 			setTexture_Top(pipe,label_top,black,yellow)
@@ -196,6 +205,8 @@ func spawn_pipe():
 				label_bottom.modulate = Color.BLACK
 			else:
 				label_bottom.modulate = Color.WHITE
+			label_bottom.add_theme_font_override("font",load("res://Assets/font/FlappyBird.ttf"))
+			label_bottom.add_theme_font_size_override("font", 100)	
 			pipe.add_child(label_bottom)
 			
 			setTexture_Buttom(pipe,label_bottom,black,yellow)

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cwqx4gp2dqb33" path="res://Assets/PianoPanel.png" id="3_1awqb"]
 [ext_resource type="Texture2D" uid="uid://x218sp1de1n0" path="res://Assets/gameover.png" id="3_wrxua"]
 [ext_resource type="Texture2D" uid="uid://c74tx0ih0jk0l" path="res://Assets/PianoPanel_v2.png" id="5_n58em"]
-[ext_resource type="FontFile" uid="uid://dwa71dtwhn41e" path="res://Assets/font/7SegmentNormalRegular-dGWK.ttf" id="6_nkenf"]
+[ext_resource type="FontFile" uid="uid://tq86asxqnm7p" path="res://Assets/font/Seven Segment.ttf" id="7_4ss1h"]
 [ext_resource type="Theme" uid="uid://cjli33ttnplxc" path="res://OptionTheme.tres" id="9_qy2y6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7k0i"]
@@ -43,12 +43,13 @@ texture = ExtResource("5_n58em")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -4.0
-offset_right = -20.0
-offset_bottom = -4.0
+offset_left = -41.0
+offset_top = -3.0
+offset_right = -41.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("9_qy2y6")
 theme_override_constants/margin_top = 32
 
 [node name="PointsLabel" type="Label" parent="MarginContainer"]
@@ -59,8 +60,8 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.470588, 0.470588, 0.470588, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("6_nkenf")
-theme_override_font_sizes/font_size = 35
+theme_override_fonts/font = ExtResource("7_4ss1h")
+theme_override_font_sizes/font_size = 50
 text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -123,14 +124,6 @@ theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("1_37paw")
 theme_override_font_sizes/font_size = 60
 text = "Level Cleared"
-horizontal_alignment = 1
-
-[node name="Label" type="Label" parent="MarginContainer/GameOverBox2/Label"]
-layout_mode = 2
-offset_right = 268.0
-offset_bottom = 58.0
-theme_override_font_sizes/font_size = 40
-text = "Level Cleared!"
 horizontal_alignment = 1
 
 [node name="Panel" type="Panel" parent="MarginContainer/GameOverBox2"]
@@ -232,12 +225,16 @@ offset_left = 62.0
 offset_top = 120.0
 offset_right = 404.0
 offset_bottom = 164.0
+theme = ExtResource("9_qy2y6")
+theme_override_font_sizes/font_size = 30
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 617.0
 offset_top = 123.0
 offset_right = 962.0
 offset_bottom = 157.0
+theme = ExtResource("9_qy2y6")
+theme_override_font_sizes/font_size = 30
 
 [connection signal="pressed" from="MarginContainer/GameOverBox/Panel/MarginContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="MarginContainer/GameOverBox2/Panel/MarginContainer/Button2" to="." method="_on_button_2_pressed"]
