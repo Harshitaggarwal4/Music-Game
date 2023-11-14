@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtsfutbumtxem"]
+[gd_scene load_steps=9 format=3 uid="uid://dtsfutbumtxem"]
 
 [ext_resource type="FontFile" uid="uid://cu4lf4od2owng" path="res://Assets/font/FlappyBird.ttf" id="1_37paw"]
 [ext_resource type="Script" path="res://Scene/UI.gd" id="1_fawne"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cfngk5p65xvc7" path="res://Assets/blackboard.jpg" id="2_jlf7u"]
 [ext_resource type="Texture2D" uid="uid://cwqx4gp2dqb33" path="res://Assets/PianoPanel.png" id="3_1awqb"]
 [ext_resource type="Texture2D" uid="uid://x218sp1de1n0" path="res://Assets/gameover.png" id="3_wrxua"]
+[ext_resource type="Texture2D" uid="uid://c74tx0ih0jk0l" path="res://Assets/PianoPanel_v2.png" id="5_n58em"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7k0i"]
 bg_color = Color(0.94902, 0.564706, 0, 0.568627)
@@ -19,7 +20,8 @@ position = Vector2(514.75, 70.25)
 scale = Vector2(0.886849, 0.305252)
 texture = ExtResource("2_6ml1m")
 
-[node name="Blackboard" type="Sprite2D" parent="."]
+[node name="Blackboard5" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(515.687, 74.75)
 scale = Vector2(0.457017, 0.506309)
 texture = ExtResource("3_1awqb")
@@ -30,15 +32,25 @@ position = Vector2(513, 71.125)
 scale = Vector2(0.814844, 0.175557)
 texture = ExtResource("2_jlf7u")
 
+[node name="Blackboard" type="Sprite2D" parent="."]
+position = Vector2(512.625, 73.4375)
+scale = Vector2(0.453403, 0.495662)
+texture = ExtResource("5_n58em")
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -4.0
+offset_right = -20.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_top = 32
 
 [node name="PointsLabel" type="Label" parent="MarginContainer"]
+custom_minimum_size = Vector2(60, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -48,7 +60,7 @@ theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("1_37paw")
 theme_override_font_sizes/font_size = 60
 text = "0"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="GameOverBox" type="VBoxContainer" parent="MarginContainer"]
@@ -208,16 +220,16 @@ theme_override_font_sizes/font_size = 30
 text = "Quit"
 
 [node name="Label" type="Label" parent="."]
-offset_left = 625.0
-offset_top = 123.0
-offset_right = 967.0
-offset_bottom = 167.0
+offset_left = 62.0
+offset_top = 120.0
+offset_right = 404.0
+offset_bottom = 164.0
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 216.0
-offset_top = 126.0
-offset_right = 418.0
-offset_bottom = 165.0
+offset_left = 617.0
+offset_top = 123.0
+offset_right = 962.0
+offset_bottom = 157.0
 
 [connection signal="pressed" from="MarginContainer/GameOverBox/Panel/MarginContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="MarginContainer/GameOverBox2/Panel/MarginContainer/Button2" to="." method="_on_button_2_pressed"]

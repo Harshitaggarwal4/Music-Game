@@ -28,6 +28,7 @@ func on_game_over():
 	resume_game_button.grab_focus()
 
 func on_game_win():
+	MainMenu.Level += 1
 	game_over_box2.visible = true
 
 

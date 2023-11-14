@@ -18,7 +18,7 @@ var Level = 1
 func _on_button_pressed():
 	var current_text = $TextEdit.text
 
-	var num_words_reqd = 3
+	var num_words_reqd = MainMenu.Level
 
 	# Split the text into words
 	var words = current_text.split(" ")
@@ -174,18 +174,25 @@ func get_swaras(syllables):
 			if vowel_part == "":
 				# Samyukta akshara
 				if cons_part == "m":
-					swaras.append("M-")
+#					swaras.append("M-")
+					swaras.append("M")
 				elif i < len(syllables) - 1 and get_cons_part(syllables[i + 1]) == cons_part and not swara in "sp":
-					swaras.append(swara.to_upper() + "-")
+#					swaras.append(swara.to_upper() + "-")
+					swaras.append(swara.to_upper())
 				else:
-					swaras.append(swara + "-")
-			else:
-				if long_vowels.has(vowel_part):
-					swaras.append(swara + ",")
-				else:
+#					swaras.append(swara + "-")
 					swaras.append(swara)
+			else:
+#				if long_vowels.has(vowel_part):
+#					swaras.append(swara + ",")
+#				else:
+#					swaras.append(swara)
+				swaras.append(swara)
 		else:
-			swaras.append(mapping.get(syllable, "*"))
+			if syllable in mapping:
+				swaras.append(mapping[syllable])
+			else:
+				pass
 
 		syllable = ""
 

@@ -10,7 +10,7 @@ signal game_started
 
 #var max_speed = 400
 #var rotation_speed = 2
-var speed = 400
+var speed = 400 + (MainMenu.Level-1)*50
 
 var is_started = false
 var should_process_input = true

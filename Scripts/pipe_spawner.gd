@@ -19,8 +19,8 @@ var number_of_swaras_done = 0
 var number_of_swaras_pressed = 0
 var length = swaras.size()
 
-@export var pipe_speed = -250
-@export var pipe_speed_y = 5
+@export var pipe_speed = -250 - (MainMenu.Level-1)*25
+@export var pipe_speed_y = 5 + (MainMenu.Level-1)*5
 @onready var spawn_timer = $SpawnTimer
 
 func _ready():
