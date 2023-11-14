@@ -7,6 +7,7 @@ class_name UI
 @onready var floatingName = $Label
 @onready var floatingSwara = $Label2
 @onready var game_over_box = $MarginContainer/GameOverBox
+@onready var game_over_box2 = $MarginContainer/GameOverBox2
 
 @onready var PanelPause : Panel = $%Panel
 @onready var contentPause : VBoxContainer = $%Content
@@ -27,7 +28,7 @@ func on_game_over():
 	resume_game_button.grab_focus()
 
 func on_game_win():
-	game_over_box.visible = true
+	game_over_box2.visible = true
 
 
 func _on_restart_button_pressed():
@@ -75,4 +76,5 @@ func _on_options_button_pressed():
 	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/options_menu.tscn")
 	pass # Replace with function body.
 
-
+func _on_button_3_pressed():
+	get_tree().quit()
