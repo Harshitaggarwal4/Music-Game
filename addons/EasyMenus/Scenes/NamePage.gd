@@ -174,7 +174,7 @@ func get_swaras(syllables):
 				# Samyukta akshara
 				if cons_part == "m":
 #					swaras.append("M-")
-					swaras.append("M")
+					swaras.append("m")
 				elif i < len(syllables) - 1 and get_cons_part(syllables[i + 1]) == cons_part and not swara in "sp":
 #					swaras.append(swara.to_upper() + "-")
 					swaras.append(swara.to_upper())
