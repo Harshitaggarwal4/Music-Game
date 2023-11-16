@@ -57,23 +57,29 @@ func set_textures(pipe, textures):
 			collision_extents.y * 2.0 / texture_size.y   # Scale factor for height
 		)
 
-func decorate_pipe(pipe, swara1, swara2):
-	var labels=[]
+func decorate_pipe(pipe, swara1, swara2, correct_swara = ''):
 	var textures=[]
+	var font = load("res://Assets/font/FlappyBird.ttf") as FontFile
 	for label_data in [[swara1,Vector2(0,-100)], [swara2,Vector2(0,350)]]:
+		textures.append(yellow if label_data[0] in white_swaras else black)
+		if label_data[0] == ',':
+			var flag_image = Sprite2D.new()
+			flag_image.texture = load("res://Assets/finish.png")
+			flag_image.scale = Vector2(0.2, 0.2)
+			flag_image.set_position(label_data[1])
+			flag_image.position.y *= 0.5
+			pipe.add_child(flag_image)
+			continue
 		var label = Label.new()
 		label.text = label_data[0]
 		label.set_position(label_data[1])
-		if label.text in white_swaras:
-			label.modulate = Color.WHITE
-			textures.append(black)
-		else:
-			label.modulate = Color.BLACK
-			textures.append(yellow)
-		# label.add_theme_font_override("font",load("res://Assets/font/FlappyBird.ttf"))
-		label.add_theme_font_size_override("font", 100)
+		label.modulate = Color.BLACK if label_data[0] in white_swaras else Color.WHITE
+		if label_data[0] == correct_swara:
+			label.modulate = Color.GREEN
+		# change font
+		label.add_theme_font_override("font", font)
+		label.add_theme_font_size_override("font_size", 80)
 		pipe.add_child(label)
-		labels.append(label)
 
 	set_textures(pipe, textures)
 
@@ -110,12 +116,12 @@ func spawn_pipe():
 		decorate_pipe(pipe, swara1, swara2)
 	elif choosen_pipe == 3:
 		pipe = pipe_pair_scene2.instantiate() as PipePair2
-		decorate_pipe(pipe, correct_swara+"this", swara2)
+		decorate_pipe(pipe, correct_swara, swara2, correct_swara)
 		pipe.swara_name = correct_swara
 		number_of_swaras_done += 1
 	elif choosen_pipe == 4:
 		pipe = pipe_pair_scene3.instantiate() as PipePair3
-		decorate_pipe(pipe, swara1, correct_swara+"this")
+		decorate_pipe(pipe, swara1, correct_swara, correct_swara)
 		pipe.swara_name = correct_swara
 		number_of_swaras_done += 1
 	

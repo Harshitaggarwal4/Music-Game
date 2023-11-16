@@ -41,7 +41,6 @@ func _on_button_pressed():
 		# print(swara)  # Print swara for each word
 			swaras_list.append(swar)  # Append swara for each word to the list
 		swaras_list.append(",")
-		swaras_list.append(",")
 	# Store the split words into the text_list variable
 	text_list = words
 	MainMenu.text_list = words
