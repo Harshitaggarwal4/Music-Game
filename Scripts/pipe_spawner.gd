@@ -67,7 +67,7 @@ func decorate_pipe(pipe, swara1, swara2, correct_swara = ''):
 			flag_image.texture = load("res://Assets/finish.png")
 			flag_image.scale = Vector2(0.2, 0.2)
 			flag_image.set_position(label_data[1])
-			# flag_image.position.y *= 0.7
+			flag_image.position.y += 50
 			pipe.add_child(flag_image)
 			continue
 		var label = Label.new()
