@@ -19,6 +19,9 @@ var number_of_swaras_done = 0
 var number_of_swaras_pressed = 0
 var length = swaras.size()
 var first = false
+var black = load("res://Assets/blackImage.jpg")
+var yellow = load("res://Assets/YellowishWhite.png")
+var white_swaras = ['g', 'd', 'n']
 
 @export var pipe_speed = -250 - (MainMenu.Level-1)*25
 @export var pipe_speed_y = 5 + (MainMenu.Level-1)*5
@@ -34,200 +37,99 @@ func _ready():
 	
 func start_spawning_pipes():
 	spawn_timer.start()
-	
-	
-	
-func setTexture_Top(pipe,label_top,black,yellow):
-	var collision_shape = pipe.get_node("TopPipe/CollisionShape2D")
-	var rectangle_shape = collision_shape.shape
-	var collision_extents = rectangle_shape.extents
 
+func set_textures(pipe, textures):
+	var collision_shapes = [
+		pipe.get_node("TopPipe/CollisionShape2D"),
+		pipe.get_node("BottomPipe/CollisionShape2D")
+	]
+	var sprites = [
+		pipe.get_node("TopPipe/CollisionShape2D/Pipe-green"),
+		pipe.get_node("BottomPipe/CollisionShape2D/Pipe-green2")
+	]
+	for i in range(2):
+		var collision_extents = collision_shapes[i].shape.extents
+		sprites[i].texture = textures[i]
+		# Calculate the scale factors to resize the sprite to match the collision shape's size
+		var texture_size = sprites[i].texture.get_size()
+		sprites[i].scale = Vector2(
+			collision_extents.x * 2.0 / texture_size.x,  # Scale factor for width
+			collision_extents.y * 2.0 / texture_size.y   # Scale factor for height
+		)
 
-	var sprite = pipe.get_node("TopPipe/CollisionShape2D/Pipe-green")
-	if(label_top.text == "s" or label_top.text == "r" or  label_top.text == "m" or  label_top.text == "p"):
-		sprite.texture = black 
-	else:
-		sprite.texture = yellow
+func decorate_pipe(pipe, swara1, swara2):
+	var labels=[]
+	var textures=[]
+	for label_data in [[swara1,Vector2(0,-100)], [swara2,Vector2(0,350)]]:
+		var label = Label.new()
+		label.text = label_data[0]
+		label.set_position(label_data[1])
+		if label.text in white_swaras:
+			label.modulate = Color.WHITE
+			textures.append(black)
+		else:
+			label.modulate = Color.BLACK
+			textures.append(yellow)
+		# label.add_theme_font_override("font",load("res://Assets/font/FlappyBird.ttf"))
+		label.add_theme_font_size_override("font", 100)
+		pipe.add_child(label)
+		labels.append(label)
 
-	# Calculate the scale factors to resize the sprite to match the collision shape's size
-	var texture_size = sprite.texture.get_size()
-	sprite.scale = Vector2(
-		collision_extents.x * 2.0 / texture_size.x,  # Scale factor for width
-		collision_extents.y * 2.0 / texture_size.y   # Scale factor for height
-	)
-
-
-
-func setTexture_Buttom(pipe,label_top,black,yellow):
-	var collision_shape = pipe.get_node("BottomPipe/CollisionShape2D")
-	var rectangle_shape = collision_shape.shape
-	var collision_extents = rectangle_shape.extents
-	
-	var sprite = pipe.get_node("BottomPipe/CollisionShape2D/Pipe-green2")
-	
-	if(label_top.text == "s" or label_top.text == "r" or  label_top.text == "m" or  label_top.text == "p"):
-		sprite.texture = black 
-	else:
-		sprite.texture = yellow
-		
-	# Calculate the scale factors to resize the sprite to match the collision shape's size
-	var texture_size = sprite.texture.get_size()
-	sprite.scale = Vector2(
-		collision_extents.x * 2.0 / texture_size.x,  # Scale factor for width
-		collision_extents.y * 2.0 / texture_size.y   # Scale factor for height
-	)
-
-
-
+	set_textures(pipe, textures)
 
 func spawn_pipe():
-	if (number_of_swaras_done != length):
-		var pipe1 = pipe_pair_scene1.instantiate() as PipePair1
-		var pipe2 = pipe_pair_scene2.instantiate() as PipePair2
-		var pipe3 = pipe_pair_scene3.instantiate() as PipePair3
-		var choosen_number_1 = randi_range(0, 6)
-		while swara[choosen_number_1] == swaras[number_of_swaras_done]:
-			choosen_number_1 = randi_range(0, 6)
-		var choosen_number_2 = randi_range(0, 6)
-		if swara[choosen_number_2] == swaras[number_of_swaras_done]:
-			choosen_number_2 = choosen_number_1
-		while choosen_number_1 == choosen_number_2:
-			choosen_number_2 = randi_range(0, 6)
-			if swara[choosen_number_2] == swaras[number_of_swaras_done]:
-				choosen_number_2 = choosen_number_1
-		var choosen_pipe = randi_range(1, 4)
-		var black = load("res://Assets/blackImage.jpg")
-		var yellow = load("res://Assets/YellowishWhite.png")
-		var pipe
-		if first == false:
-			first = true
-			choosen_pipe = 1
-		if choosen_pipe == 1 or choosen_pipe == 2:
-			pipe = pipe1
-			
-			var label_top = Label.new()
-			label_top.text = swara[choosen_number_1]
-			label_top.set_position(Vector2(0,-100))
-#			print("YO")
-#			print(label_top.text)
-			label_top.modulate = Color.BLACK
-			if(label_top.text == "g" or label_top.text == "d" or  label_top.text == "n"):
-				label_top.modulate = Color.BLACK
-			else:
-				label_top.modulate = Color.WHITE
-			label_top.add_theme_font_override("font",load("res://Assets/font/FlappyBird.ttf"))
-			pipe.add_child(label_top)
-			
-			
-			setTexture_Top(pipe,label_top,black,yellow)
-			
-			
-			
-			
-			var label_bottom = Label.new()
-			label_bottom.text = swara[choosen_number_2]
-			label_bottom.set_position(Vector2(0,350))
-			if(label_bottom.text == "g" or label_bottom.text == "d" or  label_bottom.text == "n"):
-				label_bottom.modulate = Color.BLACK
-			else:
-				label_bottom.modulate = Color.WHITE
-			label_bottom.add_theme_font_override("font",load("res://Assets/font/FlappyBird.ttf"))
-			label_bottom.add_theme_font_size_override("font", 100)	
-			pipe.add_child(label_bottom)
-			
-			setTexture_Buttom(pipe,label_bottom,black,yellow)
-			
-			
-#---------------------------------------------------------------
-		if choosen_pipe == 3:
-			pipe = pipe2
-			pipe.swara_name = swaras[number_of_swaras_done]
+	# spawn_pipe_old()
+	# return
+	if number_of_swaras_done == length:
+		return
 
-			var label_top = Label.new()
-			label_top.text = swaras[number_of_swaras_done] + "this"
-			number_of_swaras_done += 1
-			label_top.set_position(Vector2(0,-100))
-			if(label_top.text == "g" or label_top.text == "d" or  label_top.text == "n"):
-				label_top.modulate = Color.BLACK
-			else:
-				label_top.modulate = Color.WHITE
-			label_top.add_theme_font_override("font",load("res://Assets/font/FlappyBird.ttf"))
-			label_top.add_theme_font_size_override("font", 100)
-			pipe.add_child(label_top)
-			
-			setTexture_Top(pipe,label_top,black,yellow)
-			
-			
-			
-			
-			var label_bottom = Label.new()
-			label_bottom.text = swara[choosen_number_1]
-			label_bottom.set_position(Vector2(0,350))
-			if(label_bottom.text == "g" or label_bottom.text == "d" or  label_bottom.text == "n"):
-				label_bottom.modulate = Color.BLACK
-			else:
-				label_bottom.modulate = Color.WHITE
-			label_bottom.add_theme_font_override("font",load("res://Assets/font/FlappyBird.ttf"))
-			label_bottom.add_theme_font_size_override("font", 100)
-			pipe.add_child(label_bottom)
-			
-			setTexture_Buttom(pipe,label_bottom,black,yellow)
-			
+	var correct_swara = swaras[number_of_swaras_done]
 
-##---------------------------------------------------------------
-			
-		if choosen_pipe == 4:
-			pipe = pipe3
-			pipe.swara_name = swaras[number_of_swaras_done]
-			
-			var label_top = Label.new()
-			label_top.text = swara[choosen_number_1]
-			label_top.set_position(Vector2(0,-100))
-			if(label_top.text == "g" or label_top.text == "d" or  label_top.text == "n"):
-				label_top.modulate = Color.BLACK
-			else:
-				label_top.modulate = Color.WHITE
-			label_top.add_theme_font_override("font",load("res://Assets/font/FlappyBird.ttf"))
-			label_top.add_theme_font_size_override("font", 100)
-			pipe.add_child(label_top)
-			
-			setTexture_Top(pipe,label_top,black,yellow)
-			
-			
+	# choose two random swaras other than the correct swara
+	var swara1 = correct_swara
+	var swara2 = correct_swara
 
-			
-			
-			var label_bottom = Label.new()
-			label_bottom.text = swaras[number_of_swaras_done] + "this"
-			number_of_swaras_done += 1		
-			label_bottom.set_position(Vector2(0,350))
-			if(label_bottom.text == "g" or label_bottom.text == "d" or  label_bottom.text == "n"):
-				label_bottom.modulate = Color.BLACK
-			else:
-				label_bottom.modulate = Color.WHITE
-			label_bottom.add_theme_font_override("font",load("res://Assets/font/FlappyBird.ttf"))
-			label_bottom.add_theme_font_size_override("font", 100)	
-			pipe.add_child(label_bottom)
-			
-			setTexture_Buttom(pipe,label_bottom,black,yellow)
-
-
-
-			
-			
-
-		add_child(pipe)
-		
-		var viewport_rect = get_viewport().get_camera_2d().get_viewport_rect()
-		var half_height = viewport_rect.size.y / 2
-		pipe.position.x = viewport_rect.end.x
-		pipe.position.y = viewport_rect.size.y*0.35 - half_height
-		
-		pipe.bird_entered_incorrect.connect(on_bird_entered_incorrect)
-		pipe.bird_entered_correct.connect(on_bird_entered_correct)
-		pipe.check_if_point_increased.connect(check_if_point_increased)
-		pipe.set_speed(pipe_speed, pipe_speed_y)
+	while swara1 == correct_swara:
+		swara1 = swara[randi_range(0, swara.size() - 1)]
 	
+	while swara2 == correct_swara or swara2 == swara1:
+		swara2 = swara[randi_range(0, swara.size() - 1)]
+	
+	# choose a random pipe
+	var choosen_pipe = randi_range(1, 4)
+
+	# what is this?
+	if first == false:
+		first = true
+		choosen_pipe = 1
+
+	# instantiate the pipe
+	var pipe
+	if choosen_pipe == 1 or choosen_pipe == 2:
+		pipe = pipe_pair_scene1.instantiate() as PipePair1
+		decorate_pipe(pipe, swara1, swara2)
+	elif choosen_pipe == 3:
+		pipe = pipe_pair_scene2.instantiate() as PipePair2
+		decorate_pipe(pipe, correct_swara+"this", swara2)
+		pipe.swara_name = correct_swara
+		number_of_swaras_done += 1
+	elif choosen_pipe == 4:
+		pipe = pipe_pair_scene3.instantiate() as PipePair3
+		decorate_pipe(pipe, swara1, correct_swara+"this")
+		pipe.swara_name = correct_swara
+		number_of_swaras_done += 1
+	
+	add_child(pipe)
+
+	var viewport_rect = get_viewport().get_camera_2d().get_viewport_rect()
+	var half_height = viewport_rect.size.y / 2
+	pipe.position.x = viewport_rect.end.x
+	pipe.position.y = viewport_rect.size.y*0.35 - half_height
+	
+	pipe.bird_entered_incorrect.connect(on_bird_entered_incorrect)
+	pipe.bird_entered_correct.connect(on_bird_entered_correct)
+	pipe.check_if_point_increased.connect(check_if_point_increased)
+	pipe.set_speed(pipe_speed, pipe_speed_y)
 	
 func on_bird_entered_incorrect():
 	bird.upward_stop()	
