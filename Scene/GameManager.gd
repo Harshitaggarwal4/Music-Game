@@ -37,6 +37,7 @@ func end_game():
 func point_scored():
 	points += 1
 	ui.update_points(points)
+	ui.update_display()
 	
 func check_if_point_increased():
 	if prev_point == points - 1:

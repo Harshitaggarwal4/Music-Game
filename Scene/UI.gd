@@ -17,11 +17,10 @@ func _ready():
 	PanelPause.hide()
 	contentPause.hide()
 	points_label.text = "%d" % 0
-	floatingName.text = " ".join(MainMenu.text_list)
-	floatingSwara.text = " ".join(MainMenu.swaras_list)
+	update_display()
 
 func update_points(points: int):
-		points_label.text = "%d" % points
+	points_label.text = "%d" % points
 
 func on_game_over():
 	game_over_box.visible = true
@@ -84,3 +83,63 @@ func _on_options_button_pressed():
 
 func _on_button_3_pressed():
 	get_tree().quit()
+
+func update_display():
+	"""
+	examples:
+	name = soham yash harshit
+	swaras = sgm,ss,grsd.
+	
+	display names and swaras only for current and next name
+	"""
+	var names = MainMenu.text_list
+	var swaras = MainMenu.swaras_list
+	var k = MainMenu.n_swaras_pressed
+	
+	# names = ["soham", "yash", "harshit"]
+	# swaras = ["s","g","m",",","s","s",",","g","r","s","d",","]
+
+	# remove old swaras and names till "," is found
+	var names_done = 0
+	var last_comma = 0
+	for i in range(k):
+		if swaras[i] == ",":
+			names_done += 1
+			last_comma = i+1
+	names = names.slice(names_done)
+	swaras = swaras.slice(last_comma)
+	k-=last_comma
+
+	# keep only current and next name
+	names = names.slice(0, 2)
+	var comma_count = 0
+	for i in range(1,len(swaras)):
+		if swaras[i] == ",":
+			swaras[i] = " "
+			comma_count += 1
+		if comma_count == 2:
+			swaras = swaras.slice(0, i)
+			break
+		
+			
+	var bbcode = ""
+	# pressed swaras
+	for i in range(k):
+		bbcode += "[color=orange]" + swaras[i] + "[/color]"
+	# next swara
+	bbcode += "[color=green]" + swaras[k] + "[/color]"
+	# remaining swaras
+	for i in range(k+1, len(swaras)):
+		bbcode += "[color=white]" + swaras[i] + "[/color]"
+
+	var n_names_left = len(MainMenu.text_list)-len(names)
+	if n_names_left > 0:
+		bbcode += " ...%d" % n_names_left
+		
+	# print("%d" % k)
+	# print(" ".join(names))
+	# print(" ".join(swaras))
+	# print(bbcode)
+
+	floatingSwara.text = bbcode
+	floatingName.text = " ".join(names)

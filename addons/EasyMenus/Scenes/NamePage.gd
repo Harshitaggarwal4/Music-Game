@@ -10,10 +10,11 @@ func _ready():
 func _process(delta):
 	pass
 
-
+# global variables
 var text_list: Array = []
 var swaras_list : Array = []
 var Level = 1
+var n_swaras_pressed = 0
 
 func _on_button_pressed():
 	var current_text = $TextEdit.text
@@ -44,7 +45,7 @@ func _on_button_pressed():
 	# Store the split words into the text_list variable
 	text_list = words
 	MainMenu.text_list = words
-	MainMenu.swaras_list =swaras_list
+	MainMenu.swaras_list = swaras_list
 	print(text_list)
 	print(swaras_list)
 	get_tree().change_scene_to_file("res://Scene/main.tscn")
