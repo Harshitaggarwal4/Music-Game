@@ -23,14 +23,12 @@ position = Vector2(517.499, 386.001)
 scale = Vector2(0.833595, 0.949588)
 texture = ExtResource("2_n4ac8")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+layout_mode = 0
 
 [node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1031.0
-offset_bottom = 780.0
+layout_mode = 2
 theme = ExtResource("3_qv1ry")
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]

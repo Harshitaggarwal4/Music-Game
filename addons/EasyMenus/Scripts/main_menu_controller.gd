@@ -3,7 +3,7 @@ extends Control
 
 @onready var start_game_button: Button = $%StartGameButton
 @onready var options_menu: Control = $%OptionsMenu
-@onready var content: CanvasLayer = $%CanvasLayer
+@onready var content: VBoxContainer = $%CanvasLayer
 
 func _ready():
 	start_game_button.grab_focus()
@@ -17,12 +17,14 @@ func quit():
 	pass
 
 func open_options():
-	content.hide()
-	options_menu.show()
-	options_menu.on_open()
+	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/options_menu.tscn")
+#	content.hide()
+#	options_menu.show()
+#	options_menu.on_open()
 	pass
 
 func close_options():
+	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/NamePage.tscn")
 	content.show()
 	start_game_button.grab_focus()
 	options_menu.hide()

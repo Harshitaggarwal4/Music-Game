@@ -21,6 +21,7 @@ var config = ConfigFile.new()
 func go_back():
 	save_options()
 	emit_signal("close")
+	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/main_menu.tscn")
 
 # Called from outside initializes the options menu
 func on_open():
