@@ -15,8 +15,7 @@ var pipe_pair_scene3 = preload("res://Scene/pipe_pair3.tscn")
 
 var swaras = ['p', 'n', 'p', 'n', 'p', 'm', 'm', 'p', 'm', 'p', 'm', 'g']
 var swara = ['s', 'r', 'g', 'm', 'p', 'd', 'n']
-var number_of_swaras_done = 0
-var number_of_swaras_pressed = 0
+var n_pipes_on_screen = 0
 var length = swaras.size()
 var first = false
 var black = load("res://Assets/blackImage.jpg")
@@ -24,7 +23,7 @@ var yellow = load("res://Assets/YellowishWhite.png")
 var white_swaras = ['g', 'd', 'n']
 
 @export var pipe_speed = -250 - (MainMenu.Level-1)*25
-@export var pipe_speed_y = 5 + (MainMenu.Level-1)*5
+@export var pipe_speed_y = 5# + (MainMenu.Level-1)*5
 @onready var spawn_timer = $SpawnTimer
 
 func _ready():
@@ -33,6 +32,7 @@ func _ready():
 	var my_swara_list = MainMenu.swaras_list
 	swaras = my_swara_list
 	length = swaras.size()
+	MainMenu.n_swaras_pressed = 0
 	spawn_timer.timeout.connect(spawn_pipe)
 	
 func start_spawning_pipes():
@@ -67,7 +67,7 @@ func decorate_pipe(pipe, swara1, swara2, correct_swara = ''):
 			flag_image.texture = load("res://Assets/finish.png")
 			flag_image.scale = Vector2(0.2, 0.2)
 			flag_image.set_position(label_data[1])
-			flag_image.position.y *= 0.5
+			# flag_image.position.y *= 0.7
 			pipe.add_child(flag_image)
 			continue
 		var label = Label.new()
@@ -86,10 +86,10 @@ func decorate_pipe(pipe, swara1, swara2, correct_swara = ''):
 func spawn_pipe():
 	# spawn_pipe_old()
 	# return
-	if number_of_swaras_done == length:
+	if n_pipes_on_screen == length:
 		return
 
-	var correct_swara = swaras[number_of_swaras_done]
+	var correct_swara = swaras[n_pipes_on_screen]
 
 	# choose two random swaras other than the correct swara
 	var swara1 = correct_swara
@@ -102,7 +102,7 @@ func spawn_pipe():
 		swara2 = swara[randi_range(0, swara.size() - 1)]
 	
 	# choose a random pipe
-	var choosen_pipe = randi_range(1, 4)
+	var choosen_pipe = randi_range(1, 3)
 
 	# what is this?
 	if first == false:
@@ -111,19 +111,19 @@ func spawn_pipe():
 
 	# instantiate the pipe
 	var pipe
-	if choosen_pipe == 1 or choosen_pipe == 2:
+	if choosen_pipe == 1:
 		pipe = pipe_pair_scene1.instantiate() as PipePair1
 		decorate_pipe(pipe, swara1, swara2)
-	elif choosen_pipe == 3:
+	elif choosen_pipe == 2:
 		pipe = pipe_pair_scene2.instantiate() as PipePair2
 		decorate_pipe(pipe, correct_swara, swara2, correct_swara)
 		pipe.swara_name = correct_swara
-		number_of_swaras_done += 1
-	elif choosen_pipe == 4:
+		n_pipes_on_screen += 1
+	elif choosen_pipe == 3:
 		pipe = pipe_pair_scene3.instantiate() as PipePair3
 		decorate_pipe(pipe, swara1, correct_swara, correct_swara)
 		pipe.swara_name = correct_swara
-		number_of_swaras_done += 1
+		n_pipes_on_screen += 1
 	
 	add_child(pipe)
 
@@ -143,16 +143,17 @@ func on_bird_entered_incorrect():
 	stop()
 	
 func on_bird_entered_correct(swara_name):
-	if swara_name == swaras[number_of_swaras_pressed]:
+	var curr_swara = swaras[MainMenu.n_swaras_pressed]
+	var prev_swara = swaras[MainMenu.n_swaras_pressed-1]
+	if swara_name == curr_swara:
 		bird.upward_stop()
 		point_scored.emit()
-		if swaras[number_of_swaras_pressed] == ',':
-			play_swara(swaras[number_of_swaras_pressed - 1])
+		if curr_swara == ',':
+			play_swara(prev_swara)
 		else:
-			play_swara(swaras[number_of_swaras_pressed])
-		number_of_swaras_pressed += 1
-		if (number_of_swaras_pressed == length):
-	#		print("hihi")
+			play_swara(curr_swara)
+		MainMenu.n_swaras_pressed += 1
+		if MainMenu.n_swaras_pressed == length:
 			game_won.emit()
 	else:
 		bird.upward_stop()
