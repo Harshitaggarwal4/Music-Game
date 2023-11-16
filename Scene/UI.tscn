@@ -220,21 +220,21 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "Quit"
 
-[node name="Label" type="Label" parent="."]
-offset_left = 62.0
-offset_top = 120.0
-offset_right = 404.0
-offset_bottom = 164.0
+[node name="Label" type="RichTextLabel" parent="."]
+offset_left = 63.0
+offset_top = 116.0
+offset_right = 405.0
+offset_bottom = 160.0
 theme = ExtResource("9_qy2y6")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/normal_font_size = 40
 
-[node name="Label2" type="Label" parent="."]
-offset_left = 617.0
-offset_top = 123.0
-offset_right = 962.0
-offset_bottom = 157.0
+[node name="Label2" type="RichTextLabel" parent="."]
+offset_left = 618.0
+offset_top = 119.0
+offset_right = 963.0
+offset_bottom = 153.0
 theme = ExtResource("9_qy2y6")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/normal_font_size = 40
 
 [connection signal="pressed" from="MarginContainer/GameOverBox/Panel/MarginContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="MarginContainer/GameOverBox2/Panel/MarginContainer/Button2" to="." method="_on_button_2_pressed"]
