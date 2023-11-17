@@ -17,13 +17,28 @@ var should_process_input = true
 var go_down = false
 var alive = true
 
+var was_mouse_down = false
+var jump_mouse = false
+
 func _ready():
 	velocity = Vector2.ZERO
 	animation_player.play("idle")
 #	bird.bird_crashed.connect("stop_falling")
 
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.is_pressed() and !was_mouse_down:
+			jump_mouse = true
+		if event.is_pressed():
+			was_mouse_down = true
+		else:
+			was_mouse_down = false
+		print(jump_mouse)
+
 func _physics_process(delta):
-	if Input.is_action_just_pressed("jump") && should_process_input:
+	var jump = Input.is_action_just_pressed("jump") || jump_mouse
+	if jump && should_process_input:
+		jump_mouse = false
 		if !is_started: 
 			animation_player.play("flap_wings")
 			game_started.emit()
