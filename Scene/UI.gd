@@ -143,3 +143,15 @@ func update_display():
 
 	floatingSwara.text = bbcode
 	floatingName.text = " ".join(names)
+
+
+func _on_quit_button_2_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://main2.tscn")
+	pass # Replace with function body.
+
+
+func _on_quit_button_3_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/options_menu.tscn")
+	pass # Replace with function body.

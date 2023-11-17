@@ -49,6 +49,13 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
 text = "Resume"
 
+[node name="QuitButton2" type="Button" parent="Content"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Level Selector"
+
 [node name="QuitButton" type="Button" parent="Content"]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
@@ -61,5 +68,6 @@ visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="Content/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
+[connection signal="pressed" from="Content/QuitButton2" to="." method="_on_quit_button_2_pressed"]
 [connection signal="pressed" from="Content/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="close" from="OptionsMenu" to="." method="_on_options_menu_close"]
