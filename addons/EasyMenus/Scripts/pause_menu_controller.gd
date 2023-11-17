@@ -42,11 +42,11 @@ func _on_back_to_menu_button_pressed():
 #	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/NamePage.tscn")
 	emit_signal("back_to_main_pressed")
 
-
-func _input(event):
-	if (event.is_action_pressed("ui_cancel") or event.is_action_pressed("pause")) and !options_menu.visible:
-		accept_event()
-		close_pause_menu()
+#
+#func _input(event):
+#	if (event.is_action_pressed("ui_cancel") or event.is_action_pressed("pause")):
+#		accept_event()
+#		close_pause_menu()
 
 
 func _on_quit_button_2_pressed():
