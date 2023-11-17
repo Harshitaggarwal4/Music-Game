@@ -59,7 +59,7 @@ func set_textures(pipe, textures):
 
 func decorate_pipe(pipe, swara1, swara2, correct_swara = ''):
 	var textures=[]
-	var font = load("res://Assets/font/FlappyBird.ttf") as FontFile
+	var font = load("res://Assets/font/music.ttf") as FontFile
 	for label_data in [[swara1,Vector2(0,-100)], [swara2,Vector2(0,350)]]:
 		textures.append(yellow if label_data[0] in white_swaras else black)
 		if label_data[0] == ',':
@@ -73,6 +73,8 @@ func decorate_pipe(pipe, swara1, swara2, correct_swara = ''):
 		var label = Label.new()
 		label.text = label_data[0]
 		label.set_position(label_data[1])
+		label.position.x -= 15
+		label.position.y += 20
 		label.modulate = Color.BLACK if label_data[0] in white_swaras else Color.WHITE
 		if label_data[0] == correct_swara:
 			label.modulate = Color.GREEN
@@ -143,20 +145,21 @@ func on_bird_entered_incorrect():
 	stop()
 	
 func on_bird_entered_correct(swara_name):
-	var curr_swara = swaras[MainMenu.n_swaras_pressed]
-	var prev_swara = swaras[MainMenu.n_swaras_pressed-1]
-	if swara_name == curr_swara:
-		bird.upward_stop()
-		point_scored.emit()
-		if curr_swara == ',':
-			play_swara(prev_swara)
+	if MainMenu.n_swaras_pressed < len(swaras):
+		var curr_swara = swaras[MainMenu.n_swaras_pressed]
+		var prev_swara = swaras[MainMenu.n_swaras_pressed-1]
+		if swara_name == curr_swara:
+			bird.upward_stop()
+			if curr_swara == ',':
+				play_swara(prev_swara)
+			else:
+				play_swara(curr_swara)
+			MainMenu.n_swaras_pressed += 1
+			point_scored.emit()
+			if MainMenu.n_swaras_pressed == length:
+				game_won.emit()
 		else:
-			play_swara(curr_swara)
-		MainMenu.n_swaras_pressed += 1
-		if MainMenu.n_swaras_pressed == length:
-			game_won.emit()
-	else:
-		bird.upward_stop()
+			bird.upward_stop()
 
 func stop():
 	spawn_timer.stop()

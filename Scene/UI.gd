@@ -6,6 +6,7 @@ class_name UI
 @onready var resume_game_button = $MarginContainer/GameOverBox/Panel/MarginContainer/RestartButton
 @onready var floatingName = $Label
 @onready var floatingSwara = $Label2
+@onready var floatingBar = $ProgressBar 
 @onready var game_over_box = $MarginContainer/GameOverBox
 @onready var game_over_box2 = $MarginContainer/GameOverBox2
 
@@ -95,6 +96,8 @@ func update_display():
 	var names = MainMenu.text_list
 	var swaras = MainMenu.swaras_list
 	var k = MainMenu.n_swaras_pressed
+
+	print(k)
 	
 	# names = ["soham", "yash", "harshit"]
 	# swaras = ["s","g","m",",","s","s",",","g","r","s","d",","]
@@ -127,22 +130,25 @@ func update_display():
 	for i in range(k):
 		bbcode += "[color=orange]" + swaras[i] + "[/color]"
 	# next swara
-	bbcode += "[color=green]" + swaras[k] + "[/color]"
+	if k<len(swaras):
+		bbcode += "[color=green]" + swaras[k] + "[/color]"
 	# remaining swaras
 	for i in range(k+1, len(swaras)):
 		bbcode += "[color=white]" + swaras[i] + "[/color]"
 
-	var n_names_left = len(MainMenu.text_list)-len(names)
+	var n_names_left = len(MainMenu.text_list)-names_done-2
 	if n_names_left > 0:
 		bbcode += " ...%d" % n_names_left
 		
+	bbcode = "[b]"+bbcode+"[/b]"
 	# print("%d" % k)
 	# print(" ".join(names))
 	# print(" ".join(swaras))
 	# print(bbcode)
 
 	floatingSwara.text = bbcode
-	floatingName.text = " ".join(names)
+	floatingName.text = "[b]" + " ".join(names) + "[/b]"
+	floatingBar.value = 100*MainMenu.n_swaras_pressed/len(MainMenu.swaras_list)
 
 
 func _on_quit_button_2_pressed():

@@ -245,8 +245,17 @@ offset_right = 405.0
 offset_bottom = 160.0
 theme = ExtResource("9_qy2y6")
 theme_override_fonts/normal_font = SubResource("SystemFont_d4u5b")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_fonts/bold_font = ExtResource("7_4ss1h")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0, 0.929412, 0, 1)
+offset_left = 254.0
+offset_top = 2.0
+offset_right = 764.0
+offset_bottom = 29.0
 
 [node name="Label2" type="RichTextLabel" parent="."]
 offset_left = 618.0
@@ -254,7 +263,9 @@ offset_top = 119.0
 offset_right = 963.0
 offset_bottom = 153.0
 theme = ExtResource("9_qy2y6")
-theme_override_font_sizes/normal_font_size = 40
+theme_override_fonts/bold_font = ExtResource("7_4ss1h")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
 
 [connection signal="pressed" from="MarginContainer/GameOverBox/Panel/MarginContainer/RestartButton" to="." method="_on_restart_button_pressed"]
