@@ -14,6 +14,7 @@
 bg_color = Color(0.94902, 0.564706, 0, 0.568627)
 
 [sub_resource type="SystemFont" id="SystemFont_d4u5b"]
+subpixel_positioning = 0
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_fawne")

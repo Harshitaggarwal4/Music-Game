@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dq6tvhqcy2aps"]
+[gd_scene load_steps=8 format=3 uid="uid://dq6tvhqcy2aps"]
 
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/main_menu_controller.gd" id="1_lbw7r"]
 [ext_resource type="Texture2D" uid="uid://cfngk5p65xvc7" path="res://Assets/blackboard.jpg" id="2_n4ac8"]
 [ext_resource type="PackedScene" uid="uid://qlskttl1wjr7" path="res://addons/EasyMenus/Scenes/options_menu.tscn" id="2_pwqpr"]
 [ext_resource type="PackedScene" uid="uid://dru131jwwih1y" path="res://addons/EasyMenus/Nodes/menu_template_manager.tscn" id="3_65vis"]
 [ext_resource type="Theme" uid="uid://bg80y2n6mvg1g" path="res://new_theme.tres" id="3_qv1ry"]
+[ext_resource type="Texture2D" uid="uid://d3wkvsdbt865r" path="res://Assets/BlueScreen.png" id="3_wtrrp"]
 [ext_resource type="Theme" uid="uid://cjli33ttnplxc" path="res://OptionTheme.tres" id="4_1hn0o"]
 
 [node name="MainMenu" type="Control"]
@@ -22,6 +23,11 @@ script = ExtResource("1_lbw7r")
 position = Vector2(517.499, 386.001)
 scale = Vector2(0.833595, 0.949588)
 texture = ExtResource("2_n4ac8")
+
+[node name="BlueScreen" type="Sprite2D" parent="Blackboard"]
+position = Vector2(101.369, 28.4323)
+scale = Vector2(0.395243, 1.17478)
+texture = ExtResource("3_wtrrp")
 
 [node name="CanvasLayer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
