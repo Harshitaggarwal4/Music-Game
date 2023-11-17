@@ -220,3 +220,5 @@ func load_names(num_names):
 #	var textbox = $VBoxContainer/NameTextBox
 #	textbox.set_text(" ".join(names_list))
 	return names_list
+
+

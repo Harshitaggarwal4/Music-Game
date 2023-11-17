@@ -33,6 +33,7 @@ func close_options():
 
 func _on_start_game_button_pressed():
 	content.hide()
-	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/NamePage.tscn")
+	get_tree().change_scene_to_file("res://main2.tscn")
+#	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/NamePage.tscn")
 	pass
 
