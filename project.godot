@@ -27,6 +27,7 @@ MainMenu="*res://addons/EasyMenus/Scenes/NamePage.tscn"
 window/size/viewport_width=1024
 window/size/viewport_height=768
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="res://Assets/icons8-music-48.png"
 
 [input]
 

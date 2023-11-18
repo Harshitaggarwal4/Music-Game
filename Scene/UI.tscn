@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtsfutbumtxem"]
+[gd_scene load_steps=13 format=3 uid="uid://dtsfutbumtxem"]
 
 [ext_resource type="FontFile" uid="uid://cu4lf4od2owng" path="res://Assets/font/FlappyBird.ttf" id="1_37paw"]
 [ext_resource type="Script" path="res://Scene/UI.gd" id="1_fawne"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c74tx0ih0jk0l" path="res://Assets/PianoPanel_v2.png" id="5_n58em"]
 [ext_resource type="FontFile" uid="uid://tq86asxqnm7p" path="res://Assets/font/Seven Segment.ttf" id="7_4ss1h"]
 [ext_resource type="Theme" uid="uid://cjli33ttnplxc" path="res://OptionTheme.tres" id="9_qy2y6"]
+[ext_resource type="Texture2D" path="res://Assets/Digital.png" id="10_wqp2g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7k0i"]
 bg_color = Color(0.94902, 0.564706, 0, 0.568627)
@@ -42,6 +43,16 @@ position = Vector2(513, 81.5)
 scale = Vector2(0.498058, 0.586806)
 texture = ExtResource("5_n58em")
 
+[node name="Digital" type="Sprite2D" parent="."]
+position = Vector2(218, 150.5)
+scale = Vector2(0.554723, 0.116379)
+texture = ExtResource("10_wqp2g")
+
+[node name="Digital2" type="Sprite2D" parent="."]
+position = Vector2(808, 150.5)
+scale = Vector2(0.551724, 0.116379)
+texture = ExtResource("10_wqp2g")
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,7 +67,7 @@ theme = ExtResource("9_qy2y6")
 theme_override_constants/margin_top = 32
 
 [node name="PointsLabel" type="Label" parent="MarginContainer"]
-custom_minimum_size = Vector2(100, 70)
+custom_minimum_size = Vector2(100, 82.5)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -169,6 +180,24 @@ offset_right = 63.0
 offset_bottom = 36.0
 text = "Pause"
 
+[node name="Button2" type="Button" parent="."]
+offset_left = 965.0
+offset_top = 2.0
+offset_right = 1022.0
+offset_bottom = 36.0
+text = "Help"
+
+[node name="Panel2" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(0, 0, 0, 1)
+visibility_layer = 5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Panel" type="Panel" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -238,12 +267,37 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "Quit"
 
+[node name="Content2" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+offset_left = 10.0
+offset_top = 26.0
+offset_right = 1016.0
+offset_bottom = 749.0
+
+[node name="InstructionLabel" type="Label" parent="Content2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Instructions"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Content2"]
+layout_mode = 2
+
+[node name="ButtonBack2" type="Button" parent="Content2"]
+process_mode = 3
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Resume"
+
 [node name="Label" type="RichTextLabel" parent="."]
-offset_left = 63.0
-offset_top = 116.0
-offset_right = 405.0
-offset_bottom = 160.0
+offset_left = 55.0
+offset_top = 136.0
+offset_right = 397.0
+offset_bottom = 180.0
 theme = ExtResource("9_qy2y6")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = SubResource("SystemFont_d4u5b")
 theme_override_fonts/bold_font = ExtResource("7_4ss1h")
 theme_override_font_sizes/normal_font_size = 30
@@ -258,11 +312,12 @@ offset_right = 764.0
 offset_bottom = 29.0
 
 [node name="Label2" type="RichTextLabel" parent="."]
-offset_left = 618.0
-offset_top = 119.0
-offset_right = 963.0
-offset_bottom = 153.0
+offset_left = 660.0
+offset_top = 135.0
+offset_right = 1005.0
+offset_bottom = 169.0
 theme = ExtResource("9_qy2y6")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/bold_font = ExtResource("7_4ss1h")
 theme_override_font_sizes/normal_font_size = 30
 theme_override_font_sizes/bold_font_size = 30
@@ -272,7 +327,9 @@ bbcode_enabled = true
 [connection signal="pressed" from="MarginContainer/GameOverBox2/Panel/MarginContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="MarginContainer/GameOverBox2/Panel/MarginContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_new_pressed"]
 [connection signal="pressed" from="Content/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
 [connection signal="pressed" from="Content/QuitButton3" to="." method="_on_quit_button_3_pressed"]
 [connection signal="pressed" from="Content/QuitButton2" to="." method="_on_quit_button_2_pressed"]
 [connection signal="pressed" from="Content/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Content2/ButtonBack2" to="." method="_on_button_back_pressed"]

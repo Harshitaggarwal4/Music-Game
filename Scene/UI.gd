@@ -11,12 +11,14 @@ class_name UI
 @onready var game_over_box2 = $MarginContainer/GameOverBox2
 
 @onready var PanelPause : Panel = $%Panel
+@onready var PanelInstruction : Panel = $%Panel2
 @onready var contentPause : VBoxContainer = $%Content
-
+@onready var contentInstruction : VBoxContainer = $%Content2
 
 func _ready():
 	PanelPause.hide()
 	contentPause.hide()
+	contentInstruction.hide()
 	points_label.text = "%d" % 0
 	update_display()
 
@@ -134,7 +136,7 @@ func update_display():
 		bbcode += "[color=green]" + swaras[k] + "[/color]"
 	# remaining swaras
 	for i in range(k+1, len(swaras)):
-		bbcode += "[color=white]" + swaras[i] + "[/color]"
+		bbcode += "[color=black]" + swaras[i] + "[/color]"
 
 	var n_names_left = len(MainMenu.text_list)-names_done-2
 	if n_names_left > 0:
@@ -161,3 +163,22 @@ func _on_quit_button_3_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/options_menu.tscn")
 	pass # Replace with function body.
+
+
+func _on_button_new_pressed():
+#	if get_tree().paused:
+#		PanelInstruction.hide()
+#		contentInstruction.hide()
+#		get_tree().paused = false
+	PanelInstruction.show()
+	contentInstruction.show()
+	get_tree().paused = true
+#	PauseMenu.open_pause_menu()
+	pass
+
+
+func _on_button_back_pressed():
+	PanelInstruction.hide()
+	contentInstruction.hide()
+	get_tree().paused = false
+	pass
