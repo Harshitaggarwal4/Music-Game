@@ -55,6 +55,7 @@ script = ExtResource("1_ngkor")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(0.0690349, 0.0739437)
 texture = ExtResource("1_wejmr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
