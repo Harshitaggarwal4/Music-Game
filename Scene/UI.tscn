@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c74tx0ih0jk0l" path="res://Assets/PianoPanel_v2.png" id="5_n58em"]
 [ext_resource type="FontFile" uid="uid://tq86asxqnm7p" path="res://Assets/font/Seven Segment.ttf" id="7_4ss1h"]
 [ext_resource type="Theme" uid="uid://cjli33ttnplxc" path="res://OptionTheme.tres" id="9_qy2y6"]
-[ext_resource type="Texture2D" path="res://Assets/Digital.png" id="10_wqp2g"]
+[ext_resource type="Texture2D" uid="uid://dqpqspaxmn3rd" path="res://Assets/Digital.png" id="10_wqp2g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7k0i"]
 bg_color = Color(0.94902, 0.564706, 0, 0.568627)

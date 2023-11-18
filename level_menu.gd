@@ -29,3 +29,4 @@ func _on_next_button_pressed():
 		var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		tween.tween_property(gridbox, "position:x", gridbox.position.x - grid_width, 0.5)
 #		gridbox.position.x -= grid_width
+

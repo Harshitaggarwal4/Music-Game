@@ -33,3 +33,15 @@ func _on_gui_input(event):
 		MainMenu.Level = level_num 
 		print("Clicked level ", level_num)
 		get_tree().change_scene_to_file("res://addons/EasyMenus/Scenes/NamePage.tscn")
+
+
+
+func _on_mouse_entered():
+	modulate = Color(0.8, 0.8, 0.8) 
+	pass # Replace with function body.
+
+
+func _on_mouse_exited():
+	modulate = Color(1, 1, 1)
+	pass # Replace with function body.
+
