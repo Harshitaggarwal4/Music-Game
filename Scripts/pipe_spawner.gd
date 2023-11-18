@@ -22,8 +22,8 @@ var black = load("res://Assets/blackImage.jpg")
 var yellow = load("res://Assets/YellowishWhite.png")
 var white_swaras = ['g', 'd', 'n']
 
-@export var pipe_speed = -250 - (MainMenu.Level-1)*25
-@export var pipe_speed_y = 5# + (MainMenu.Level-1)*5
+@export var pipe_speed = -250 - (MainMenu.Level-1)*10
+@export var pipe_speed_y = 5
 @onready var spawn_timer = $SpawnTimer
 
 func _ready():
@@ -137,6 +137,9 @@ func spawn_pipe():
 	pipe.bird_entered_incorrect.connect(on_bird_entered_incorrect)
 	pipe.bird_entered_correct.connect(on_bird_entered_correct)
 	pipe.check_if_point_increased.connect(check_if_point_increased)
+	pipe_speed_y = randi_range(0, MainMenu.Level)
+	if MainMenu.Level > 26:
+		pipe_speed_y = randi_range(0, 26)
 	pipe.set_speed(pipe_speed, pipe_speed_y)
 	
 func on_bird_entered_incorrect():
