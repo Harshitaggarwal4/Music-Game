@@ -19,6 +19,7 @@ var alive = true
 
 var was_mouse_down = false
 var jump_mouse = false
+var acceleration = 8
 
 func _ready():
 	velocity = Vector2.ZERO
@@ -58,6 +59,9 @@ func _physics_process(delta):
 	if !is_started:
 		return
 		
+	if alive == false && velocity.y != 0:
+		velocity.y += acceleration
+		
 #	velocity.y += gravity * delta
 
 #	if velocity.y > max_speed:
@@ -82,30 +86,45 @@ func _physics_process(delta):
 
 
 func kill():
-	should_process_input = false
-	alive = false
+	if alive == true:
+		should_process_input = false
+		alive = false
+		print("hihi")
+		velocity.y = -301
+		velocity.x = 0
 	
 func stop():
 #	animation_player.stop()
 #	gravity = 0
-	alive=false
-	velocity = Vector2.ZERO
+	if alive == true:
+		print("hi")
+		alive = false
+		velocity.y = -301
+		velocity.x = 0
 	
 func upward_stop():
 #	animation_player.stop()
 #	gravity = 0
-	go_down = velocity.y<0
-	velocity = Vector2.ZERO
+	if alive == true:	
+		go_down = velocity.y<0
+		velocity = Vector2.ZERO
 
 func _on_upper_area_body_entered(body):
-	print("hi harshit")
-	go_down = velocity.y<0
-	velocity = Vector2.ZERO
-	print(velocity)
+	if alive == true:	
+		print("hi harshit")
+		go_down = velocity.y<0
+		velocity = Vector2.ZERO
+		print(velocity)
+	else:
+		velocity.y = 1
 
 
 func _on_lower_area_body_entered(body):
-	print("hi harshit")
-	go_down = velocity.y<0
-	velocity = Vector2.ZERO
-	print(velocity)
+	if alive == true:	
+		print("hi harshit")
+		go_down = velocity.y<0
+		velocity = Vector2.ZERO
+		print(velocity)
+	else:
+		velocity.y = 0
+		animation_player.stop()		
