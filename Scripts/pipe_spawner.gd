@@ -148,27 +148,28 @@ func on_bird_entered_incorrect():
 	stop()
 	
 func on_bird_entered_correct(swara_name, upper_or_lower, pipe):
-	if MainMenu.n_swaras_pressed < len(swaras):
-		var curr_swara = swaras[MainMenu.n_swaras_pressed]
-		var prev_swara = swaras[MainMenu.n_swaras_pressed-1]
-		if swara_name == MainMenu.n_swaras_pressed:
-			bird.upward_stop(true)
-			if curr_swara == ',':
-				play_swara(prev_swara)
+	if bird.alive == true:
+		if MainMenu.n_swaras_pressed < len(swaras):
+			var curr_swara = swaras[MainMenu.n_swaras_pressed]
+			var prev_swara = swaras[MainMenu.n_swaras_pressed-1]
+			if swara_name == MainMenu.n_swaras_pressed:
+				bird.upward_stop(true)
+				if curr_swara == ',':
+					play_swara(prev_swara)
+				else:
+					play_swara(curr_swara)
+				MainMenu.n_swaras_pressed += 1
+				point_scored.emit()
+				if MainMenu.n_swaras_pressed == length:
+					game_won.emit()
+				if upper_or_lower == true:
+					bird.position.y -= 20
+					pipe.position.y -= 20
+				elif upper_or_lower == false:
+					bird.position.y += 20
+					pipe.position.y += 20
 			else:
-				play_swara(curr_swara)
-			MainMenu.n_swaras_pressed += 1
-			point_scored.emit()
-			if MainMenu.n_swaras_pressed == length:
-				game_won.emit()
-			if upper_or_lower == true:
-				bird.position.y -= 20
-				pipe.position.y -= 20
-			elif upper_or_lower == false:
-				bird.position.y += 20
-				pipe.position.y += 20
-		else:
-			bird.upward_stop(false)
+				bird.upward_stop(false)
 
 func stop():
 	spawn_timer.stop()
