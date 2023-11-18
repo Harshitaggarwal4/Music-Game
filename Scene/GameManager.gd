@@ -50,6 +50,6 @@ func game_won_screen():
 	print("hi")
 	if fade != null: 
 		fade.play()
-	bird.kill()
+	bird.kill_won()
 	pipe_spawner.stop();
 	ui.on_game_win()

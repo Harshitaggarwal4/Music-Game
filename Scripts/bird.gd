@@ -92,7 +92,12 @@ func kill():
 		print("hihi")
 		velocity.y = -301
 		velocity.x = 0
-	
+		
+func kill_won():
+	if alive == true:
+		should_process_input = false
+		alive = false
+
 func stop():
 #	animation_player.stop()
 #	gravity = 0
@@ -102,16 +107,18 @@ func stop():
 		velocity.y = -301
 		velocity.x = 0
 	
-func upward_stop():
+func upward_stop(should_go_up):
 #	animation_player.stop()
 #	gravity = 0
-	if alive == true:	
-		go_down = velocity.y<0
+	if alive == true:
+		if should_go_up == true:
+			go_down = velocity.y<=0
+			print("harshit  ", go_down, velocity.y)
 		velocity = Vector2.ZERO
 
 func _on_upper_area_body_entered(body):
 	if alive == true:	
-		print("hi harshit")
+		print("hi harshit upper")
 		go_down = velocity.y<0
 		velocity = Vector2.ZERO
 		print(velocity)
@@ -127,4 +134,4 @@ func _on_lower_area_body_entered(body):
 		print(velocity)
 	else:
 		velocity.y = 0
-		animation_player.stop()		
+		animation_player.stop()

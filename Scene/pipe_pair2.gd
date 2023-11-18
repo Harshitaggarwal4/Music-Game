@@ -26,7 +26,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 func _on_top_pipe_body_entered(body):
-	bird_entered_correct.emit(swara_name)
+	bird_entered_correct.emit(swara_name, true, top_pipe)
 
 func _on_bottom_pipe_body_entered(body):
 	bird_entered_incorrect.emit()

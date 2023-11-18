@@ -119,12 +119,12 @@ func spawn_pipe():
 	elif choosen_pipe == 2:
 		pipe = pipe_pair_scene2.instantiate() as PipePair2
 		decorate_pipe(pipe, correct_swara, swara2, correct_swara)
-		pipe.swara_name = correct_swara
+		pipe.swara_name = n_pipes_on_screen
 		n_pipes_on_screen += 1
 	elif choosen_pipe == 3:
 		pipe = pipe_pair_scene3.instantiate() as PipePair3
 		decorate_pipe(pipe, swara1, correct_swara, correct_swara)
-		pipe.swara_name = correct_swara
+		pipe.swara_name = n_pipes_on_screen
 		n_pipes_on_screen += 1
 	
 	add_child(pipe)
@@ -143,16 +143,16 @@ func spawn_pipe():
 	pipe.set_speed(pipe_speed, pipe_speed_y)
 	
 func on_bird_entered_incorrect():
-	bird.upward_stop()	
+	bird.upward_stop(false)
 	bird_crashed.emit()
 	stop()
 	
-func on_bird_entered_correct(swara_name):
+func on_bird_entered_correct(swara_name, upper_or_lower, pipe):
 	if MainMenu.n_swaras_pressed < len(swaras):
 		var curr_swara = swaras[MainMenu.n_swaras_pressed]
 		var prev_swara = swaras[MainMenu.n_swaras_pressed-1]
-		if swara_name == curr_swara:
-			bird.upward_stop()
+		if swara_name == MainMenu.n_swaras_pressed:
+			bird.upward_stop(true)
 			if curr_swara == ',':
 				play_swara(prev_swara)
 			else:
@@ -161,8 +161,14 @@ func on_bird_entered_correct(swara_name):
 			point_scored.emit()
 			if MainMenu.n_swaras_pressed == length:
 				game_won.emit()
+			if upper_or_lower == true:
+				bird.position.y -= 20
+				pipe.position.y -= 20
+			elif upper_or_lower == false:
+				bird.position.y += 20
+				pipe.position.y += 20
 		else:
-			bird.upward_stop()
+			bird.upward_stop(false)
 
 func stop():
 	spawn_timer.stop()
