@@ -22,34 +22,58 @@ func _on_button_pressed():
 	var num_words_reqd = MainMenu.Level
 
 	# Split the text into words
-	var words = current_text.split(" ")
-	if current_text=="":
-		words=[]
-	swaras_list.clear()  # Clear the previous swaras
-	
-	# ensure number of words is exact
-	if words.size() < num_words_reqd:
-		var names = load_names(num_words_reqd - words.size())
-		for name in names:
-			words.append(name)
-	elif words.size() > num_words_reqd:
-		words = words.slice(0, num_words_reqd)
+	var words = []
+	if current_text.begins_with("raga "):
+		var raga = current_text.split(" ")[1]
+		var swaras = load_raga(raga)
+		if swaras:
+			words = swaras.split(" ")
 
-	# Loop through each word
-	for word in words:
-		var swara = name_to_swaras(word)
-		for swar in swara:
-		# print(swara)  # Print swara for each word
-			swaras_list.append(swar)  # Append swara for each word to the list
-		swaras_list.append(",")
-	# Store the split words into the text_list variable
-	text_list = words
+			num_words_reqd *= 4 # 4 swaras per word
+
+			# ensure number of words is exact
+			if words.size() < num_words_reqd:
+				# repeat the swaras
+				var num_repeats = num_words_reqd / words.size()
+				for i in range(num_repeats):
+					words += words
+				words = words.slice(0, num_words_reqd)
+			elif words.size() > num_words_reqd:
+				# trim the swaras
+				words = words.slice(0, num_words_reqd)
+			
+			swaras_list = words
+			swaras_list.append(",")
+		else:
+			current_text = ""
+		
+	if len(words) == 0:
+		if current_text != "":
+			words=current_text.split(" ")
+		
+		# ensure number of words is exact
+		if words.size() < num_words_reqd:
+			var names = load_names(num_words_reqd - words.size())
+			for name in names:
+				words.append(name)
+		elif words.size() > num_words_reqd:
+			words = words.slice(0, num_words_reqd)
+			
+		# Store the split words into the text_list variable
+		text_list = words
+		swaras_list.clear()  # Clear the previous swaras
+		# Loop through each word
+		for word in words:
+			var swara = name_to_swaras(word)
+			for swar in swara:
+			# print(swara)  # Print swara for each word
+				swaras_list.append(swar)  # Append swara for each word to the list
+			swaras_list.append(",")
 	MainMenu.text_list = words
 	MainMenu.swaras_list = swaras_list
 	print(text_list)
 	print(swaras_list)
 	get_tree().change_scene_to_file("res://Scene/main.tscn")
-	pass # Replace with function body.
 
 
 
@@ -221,4 +245,16 @@ func load_names(num_names):
 #	textbox.set_text(" ".join(names_list))
 	return names_list
 
+func load_raga(raga="random"):
+	# load names list from the file
+	var file = FileAccess.open("res://Assets/ragas.txt", FileAccess.READ)
+	var ragas = file.get_as_text()
+	file.close()
 
+	# split into lines
+	ragas = ragas.split("\n")
+
+	for line in ragas:
+		var name_swaras = line.split(": ")
+		if name_swaras[0] == raga:
+			return name_swaras[1]

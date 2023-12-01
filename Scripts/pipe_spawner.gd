@@ -21,6 +21,7 @@ var first = false
 var black = load("res://Assets/blackImage.jpg")
 var yellow = load("res://Assets/YellowishWhite.png")
 var white_swaras = ['g', 'd', 'n']
+var prev_notenum = -1
 
 @export var pipe_speed = -250 - (MainMenu.Level-1)*10
 @export var pipe_speed_y = 5
@@ -155,7 +156,11 @@ func on_bird_entered_correct(swara_name, upper_or_lower, pipe):
 			if swara_name == MainMenu.n_swaras_pressed:
 				bird.upward_stop(true)
 				if curr_swara == ',':
-					play_swara(prev_swara)
+					# play sfx
+					var audio := AudioStreamPlayer.new()
+					add_child(audio)
+					audio.stream = load("res://Assets/sfx/level-completed.mp3")
+					audio.play()
 				else:
 					play_swara(curr_swara)
 				MainMenu.n_swaras_pressed += 1
@@ -187,9 +192,31 @@ func check_if_point_increased():
 	check_if_point_increasedd.emit()
 	
 func play_swara(swara):
+	if swara == '*':
+		return
+	
 	var notes = "sRrGgmMpDdNn"
 	var octave = 4
 	var notenum = notes.find(swara) + octave * 12
+	# print("prev: ", prev_notenum, " curr: ", notenum)
+
+	if prev_notenum == -1:
+		prev_notenum = octave * 12
+	
+	var delta = notenum - prev_notenum
+	if delta > 5:
+		notenum -= 12
+	elif delta < -5:
+		notenum += 12
+
+	# make sure we have the audio file for this note
+	if notenum < 28:
+		notenum += 12
+	elif notenum > 63:
+		notenum -= 12
+	
+	prev_notenum = notenum
+
 	var audio := AudioStreamPlayer.new()
 	add_child(audio)
 	var note_id: String = str(notenum)
