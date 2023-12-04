@@ -34,28 +34,37 @@ func _input(event):
 			was_mouse_down = true
 		else:
 			was_mouse_down = false
-		print(jump_mouse)
 
 func _physics_process(delta):
 	var jump = Input.is_action_just_pressed("jump") || jump_mouse
-	if jump && should_process_input:
-		jump_mouse = false
-		if !is_started: 
-			animation_player.play("flap_wings")
-			game_started.emit()
-			is_started = true
-			velocity.y = speed
-		else:
-			if go_down == true:
+
+	var mechanics = "ours"
+
+	if should_process_input:
+		if jump:
+			jump_mouse = false
+			if !is_started: 
+				animation_player.play("flap_wings")
+				game_started.emit()
+				is_started = true
 				velocity.y = speed
-				go_down = false
 			else:
-				if velocity.y < 0:
-					velocity.y = speed
-				else:
-					velocity.y = -1 * speed
-#		jump()
-		
+				if mechanics == "ours":
+					if go_down == true:
+						velocity.y = speed
+						go_down = false
+					else:
+						if velocity.y < 0:
+							velocity.y = speed
+						else:
+							velocity.y = -1 * speed
+
+		if mechanics == "flappy_bird":
+			if Input.is_action_pressed("jump") || was_mouse_down:
+				velocity.y = -speed
+			else:
+				velocity.y = speed
+
 	if !is_started:
 		return
 		
