@@ -83,7 +83,7 @@ func decorate_pipe(pipe, swara1, swara2, correct_swara = ''):
 		label.add_theme_font_size_override("font_size", 80)
 		pipe.add_child(label)
 
-	set_textures(pipe, textures)
+#	set_textures(pipe, textures)
 
 func spawn_pipe():
 	# spawn_pipe_old()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dq6tvhqcy2aps"]
+[gd_scene load_steps=9 format=3 uid="uid://dq6tvhqcy2aps"]
 
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/main_menu_controller.gd" id="1_lbw7r"]
 [ext_resource type="Texture2D" uid="uid://cfngk5p65xvc7" path="res://Assets/blackboard.jpg" id="2_n4ac8"]
@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://bg80y2n6mvg1g" path="res://new_theme.tres" id="3_qv1ry"]
 [ext_resource type="Texture2D" uid="uid://d3wkvsdbt865r" path="res://Assets/BlueScreen.png" id="3_wtrrp"]
 [ext_resource type="Theme" uid="uid://cjli33ttnplxc" path="res://OptionTheme.tres" id="4_1hn0o"]
+[ext_resource type="Texture2D" uid="uid://ceckfvuutyr1r" path="res://Assets/culture2.jpg" id="4_c36yf"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -28,6 +29,11 @@ texture = ExtResource("2_n4ac8")
 position = Vector2(101.369, 28.4323)
 scale = Vector2(0.395243, 1.17478)
 texture = ExtResource("3_wtrrp")
+
+[node name="Culture2" type="Sprite2D" parent="Blackboard"]
+position = Vector2(-5.39709, -4.21338)
+scale = Vector2(2.05136, 2.02719)
+texture = ExtResource("4_c36yf")
 
 [node name="CanvasLayer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
